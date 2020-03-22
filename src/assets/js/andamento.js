@@ -196,5 +196,6 @@ function getDateIta(d) {
 }
 
 function getDataFromString(stringDate) {
-  return new Date(stringDate);
+  var def = stringDate.replace(' ', 'T')
+  return new Date(def);
 }

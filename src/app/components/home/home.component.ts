@@ -19,8 +19,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   // this.initAndamentoNazionale();
-    this.dataAggiornamento = new Date().toString();
+    this.dataAggiornamento = new Date().toLocaleString();
   }
 
 }
