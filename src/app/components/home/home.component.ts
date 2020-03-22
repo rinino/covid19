@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+
+import { RecuperoJsonService } from '../../services/recupero-json.service';
+
+import { AndamentoNazionaleDto } from '../../models/andamento-nazionale-dto';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -9,9 +13,14 @@ import { RouterModule, Routes } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  dataAggiornamento: string;
+
+  constructor(
+  ) {}
 
   ngOnInit(): void {
+   // this.initAndamentoNazionale();
+    this.dataAggiornamento = new Date().toString();
   }
 
 }

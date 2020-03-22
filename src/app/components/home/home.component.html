@@ -12,10 +12,21 @@
 
   <div class="content">
     <h2>COVID-19</h2>
-    <h4>Data aggiornamento:<span id="dataAgg"></span></h4>
+    <h4>Data aggiornamento:<span id="dataAgg">{{dataAggiornamento}}</span></h4>
 
+    <label>Tamponi - Attualmente positivi</label>
     <div class="container_grafici">
       <canvas id="generale"></canvas>
+    </div>
+
+    <label>Terapia intensiva - Deceduti</label>
+    <div class="container_grafici">
+      <canvas id="generale2"></canvas>
+    </div>
+
+    <label>Andamento provincia di Potenza</label>
+    <div class="container_grafici">
+      <canvas id="potenza"></canvas>
     </div>
 
   </div>
