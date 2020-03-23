@@ -1,6 +1,7 @@
 
 var urlAndamentoNazionale = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json";
 var urlProvince = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province.json";
+var urlAndamentoNazionaleLatest = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json";
 var options = {
   responsive: true,
   maintainAspectRatio: false,
@@ -28,6 +29,9 @@ var options = {
 $(document).ready(function () {
   elaboraDatiAndamentoNazionale();
   elaboraDatiProvinciaPz();
+  var aggiornamentoNazionaleLatest = getDatiAndamentoNazionaleLatest();
+  var dataAggiornamento = getDataFromString(aggiornamentoNazionaleLatest[0].data);
+  $('#dataAgg').text(getDateOraIta(dataAggiornamento));
 
 });
 
@@ -165,6 +169,29 @@ function getDatiAndamentoNazionale() {
 }
 
 
+function getDatiAndamentoNazionaleLatest() {
+
+
+var jsonResultAndamentoNazionaleLatest;
+$.ajax({
+  dataType: "json",
+  url: urlAndamentoNazionaleLatest
+  ,
+  async: false,
+  data: jsonResultAndamentoNazionaleLatest
+  ,
+  success: function (data) {
+    jsonResultAndamentoNazionaleLatest
+      = data;
+  },
+  error: function (e) {
+    console.log("errore: " + e);
+  }
+});
+return jsonResultAndamentoNazionaleLatest;
+
+}
+
 
 function getDatiProvince() {
   var jsonResultProvince;
@@ -187,12 +214,12 @@ function getDatiProvince() {
 
 
 
-
-
-
-
 function getDateIta(d) {
   return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+}
+
+function getDateOraIta(d) {
+  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " alle ore " +d.getHours();
 }
 
 function getDataFromString(stringDate) {

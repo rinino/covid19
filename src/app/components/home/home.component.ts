@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataAggiornamento = new Date().toLocaleString();
+   // this.dataAggiornamento = new Date().toLocaleString();
   }
 
 }
