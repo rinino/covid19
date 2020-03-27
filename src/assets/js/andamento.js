@@ -1,8 +1,16 @@
 
-var urlAndamentoNazionale = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json";
-var urlProvince = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province.json";
-var urlAndamentoNazionaleLatest = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json";
-var urlAndamentoDeceduti = "https://raw.githubusercontent.com/VitoFanelli/covid-19-italy/master/notebookIT/decessiITA.json";
+
+$(document).ready(function () {
+  elaboraDatiAndamentoNazionale();
+  elaboraDatiProvinciaPz();
+  var aggiornamentoNazionaleLatest = getDatiAndamentoNazionaleLatest();
+  var dataAggiornamento = getDataFromString(aggiornamentoNazionaleLatest[0].data);
+  $('#dataAgg').text(getDateOraIta(dataAggiornamento));
+
+  elaboraDatiDeceduti();
+  elaboraDatiRegioneBasilicata();
+
+});
 
 
 var options = {
@@ -28,17 +36,6 @@ var options = {
     }]
   }
 };
-
-$(document).ready(function () {
-  elaboraDatiAndamentoNazionale();
-  elaboraDatiProvinciaPz();
-  var aggiornamentoNazionaleLatest = getDatiAndamentoNazionaleLatest();
-  var dataAggiornamento = getDataFromString(aggiornamentoNazionaleLatest[0].data);
-  $('#dataAgg').text(getDateOraIta(dataAggiornamento));
-
-  elaboraDatiDeceduti();
-
-});
 
 
 function elaboraDatiAndamentoNazionale() {
@@ -66,14 +63,39 @@ function elaboraDatiAndamentoNazionale() {
 }
 
 
+function elaboraDatiRegioneBasilicata() {
+  var jsonRegioni = getDatiRegioni();
+  var labeldata = [];
+  var terapia_intensiva = [];
+  var totale_casi = [];
+  var tamponi = [];
+
+
+
+  for (var i = 0; i < jsonRegioni.length; i++) {
+
+    if (jsonRegioni[i].codice_regione == 17) {
+      var dataRilevamento = getDataFromString(jsonRegioni
+      [i].data);
+      labeldata.push(getDateIta(dataRilevamento));
+      terapia_intensiva.push(jsonRegioni[i].terapia_intensiva);
+      totale_casi.push(jsonRegioni[i].totale_casi);
+      tamponi.push(jsonRegioni[i].tamponi);
+
+    }
+  }
+  renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi);
+
+}
+
+
+
+
 function elaboraDatiProvinciaPz() {
   var jsonProvince = getDatiProvince();
   var labeldata = [];
-  var tamponi = [];
-  var terapia_intensiva = [];
-  var deceduti = [];
-  var totale_attualmente_positivi = [];
-  var totale_casi = [];
+  var totale_casiPz = [];
+  var totale_casiMt = [];
 
   for (var i = 0; i < jsonProvince.length; i++) {
 
@@ -81,10 +103,17 @@ function elaboraDatiProvinciaPz() {
       var dataRilevamento = getDataFromString(jsonProvince
       [i].data);
       labeldata.push(getDateIta(dataRilevamento));
-      totale_casi.push(jsonProvince[i].totale_casi);
+      totale_casiPz.push(jsonProvince[i].totale_casi);
     }
+
+    if (jsonProvince[i].sigla_provincia == 'MT') {
+      var dataRilevamento = getDataFromString(jsonProvince
+      [i].data);
+      totale_casiMt.push(jsonProvince[i].totale_casi);
+    }
+
   }
-  renderChartLinePz(labeldata, totale_casi);
+  renderChartLinePz(labeldata, totale_casiPz, totale_casiMt);
 
 }
 
@@ -119,9 +148,6 @@ function renderChartDeceduti(labeldata, deceduti) {
     },
   });
 }
-
-
-
 
 // dati generali
 function renderChartLine1(labeldata, tamponi, totale_attualmente_positivi) {
@@ -166,123 +192,50 @@ function renderChartLine2(labeldata, terapia_intensiva, deceduti) {
   });
 }
 
-
 // dati provincia pz
-
-function renderChartLinePz(labeldata, totale_casi) {
-  var ctx = document.getElementById("potenza").getContext('2d');
+function renderChartLinePz(labeldata, totale_casiPz, totale_casiMt) {
+  var ctx = document.getElementById("potenza_matera").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: labeldata,
       datasets: [{
-        label: 'Totale casi',
-        data: totale_casi,
-        borderColor: "#8e5ea2",
+        label: 'Totale casi PZ',
+        data: totale_casiPz,
+        borderColor: "#ff0000",
+        options: options
+      },{
+        label: 'Totale casi MT',
+        data: totale_casiMt,
+        borderColor: "#0000FF",
         options: options
       }]
     },
   });
 }
 
-
-function getDatiAndamentoNazionale() {
-  var jsonResultAndamentoNazionale;
-  $.ajax({
-    dataType: "json",
-    url: urlAndamentoNazionale
-    ,
-    async: false,
-    data: jsonResultAndamentoNazionale
-    ,
-    success: function (data) {
-      jsonResultAndamentoNazionale
-        = data;
+function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi) {
+  var ctx = document.getElementById("basilicata").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labeldata,
+      datasets: [{
+        label: 'Terapia intensiva',
+        data: terapia_intensiva,
+        borderColor: "#ff0000",
+        backgroundColor: "#ff0000"
+      }, {
+        label: 'Num. tamponi',
+        data: tamponi,
+        borderColor: "#009933",
+        backgroundColor: "#009933"
+      }, {
+        label: 'Casi totali',
+        data: totale_casi,
+        borderColor: "#3333cc",
+        backgroundColor: "#3333cc"
+      }]
     },
-    error: function (e) {
-      console.log("errore: " + e);
-    }
   });
-  return jsonResultAndamentoNazionale;
-}
-
-
-function getDatiAndamentoNazionaleLatest() {
-
-  var jsonResultAndamentoNazionaleLatest;
-  $.ajax({
-    dataType: "json",
-    url: urlAndamentoNazionaleLatest
-    ,
-    async: false,
-    data: jsonResultAndamentoNazionaleLatest
-    ,
-    success: function (data) {
-      jsonResultAndamentoNazionaleLatest
-        = data;
-    },
-    error: function (e) {
-      console.log("errore: " + e);
-    }
-  });
-  return jsonResultAndamentoNazionaleLatest;
-
-}
-
-
-function getDatiProvince() {
-  var jsonResultProvince;
-  $.ajax({
-    dataType: "json",
-    url: urlProvince
-    ,
-    async: false,
-    data: jsonResultProvince
-    ,
-    success: function (data) {
-      jsonResultProvince = data;
-    },
-    error: function (e) {
-      console.log("errore: " + e);
-    }
-  });
-  return jsonResultProvince;
-}
-
-
-function getDatiDecedutiTrend() {
-
-  var jsonTrendDeceduti;
-  $.ajax({
-    dataType: "json",
-    url: urlAndamentoDeceduti
-    ,
-    async: false,
-    data: jsonTrendDeceduti
-    ,
-    success: function (data) {
-      jsonTrendDeceduti = data;
-    },
-    error: function (e) {
-      console.log("errore: " + e);
-    }
-  });
-  return jsonTrendDeceduti;
-
-
-}
-
-
-
-function getDateIta(d) {
-  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
-}
-
-function getDateOraIta(d) {
-  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " alle ore " + d.getHours();
-}
-
-function getDataFromString(stringDate) {
-  var def = stringDate.replace(' ', 'T')
-  return new Date(def);
 }

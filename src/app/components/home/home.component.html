@@ -1,5 +1,4 @@
-
-  <!-- <a class="card" rel="noopener" href='/andamento'>
+<!-- <a class="card" rel="noopener" href='/andamento'>
 
     <svg class="material-icons" xmlns="http://www.w3.org/2000/svg"
       width="24" height="24" viewBox="0 0 24 24">
@@ -10,37 +9,45 @@
 
   </a> -->
 
-  <div class="content">
-    <h2>COVID-19</h2>
-    <h4>Data aggiornamento:<span id="dataAgg"></span></h4>
-
-    <label>Tamponi - Attualmente positivi</label>
-    <div class="container_grafici">
-      <canvas id="generale"></canvas>
-    </div>
-
-    <label>Terapia intensiva - Deceduti</label>
-    <div class="container_grafici">
-      <canvas id="generale2"></canvas>
-    </div>
-
-    <label>Andamento provincia di Potenza</label>
-    <div class="container_grafici">
-      <canvas id="potenza"></canvas>
-    </div>
-
-
-    <label>Andamento deceduti</label>
-    <div class="container_grafici">
-      <canvas id="deceduti"></canvas>
-    </div>
-
-
-
+<div class="content" role="main">
+  <h4>Data aggiornamento:<span id="dataAgg"></span></h4>
+  <div class="noteAlt">
+    <p class="infoP">I dati vengono caricati dai repository della <a href="http://www.protezionecivile.gov.it/"
+        target="_blank">Protezione civile</a>, disponibili <a href="https://github.com/pcm-dpc/COVID-19"
+        target="_blank">qui.</a></p>
+    <p class="infoP">Alcuni grafici sono alimentati grazie alle elaborazioni e il contributo di un mio stimato collega
+      (ecco il suo profilo <a href="https://www.linkedin.com/in/vito-fanelli-71a48873/" target="_blank">Linkedin</a>)
+    </p>
+    <p class="infoP">L'aggiornamento avviene quotidianamente, appena i nuovi dati vengono caricati sui vari repository.
+    </p>
   </div>
 
 
+    <div class="container_grafici">
+      <label class="titolo_grafico">Num. tamponi - Num. attualmente positivi</label>
+      <canvas id="generale"></canvas>
+    </div>
+
+    <div class="container_grafici">
+      <label class="titolo_grafico">Num. terapia intensiva - Num. deceduti</label>
+      <canvas id="generale2"></canvas>
+    </div>
+
+    <div class="container_grafici">
+      <label class="titolo_grafico">Andamento deceduti</label>
+      <canvas id="deceduti"></canvas>
+    </div>
+
+    <div class="container_grafici">
+      <label class="titolo_grafico">Andamento province di Potenza e matera</label>
+      <canvas id="potenza_matera"></canvas>
+    </div>
+
+    <div class="container_grafici">
+      <label class="titolo_grafico">Andamento Regione Basilicata</label>
+      <canvas id="basilicata"></canvas>
+    </div>
 
 
 
-
+</div>
