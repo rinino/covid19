@@ -2,6 +2,9 @@
 var urlAndamentoNazionale = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json";
 var urlProvince = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province.json";
 var urlAndamentoNazionaleLatest = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json";
+var urlAndamentoDeceduti = "https://raw.githubusercontent.com/VitoFanelli/covid-19-italy/master/notebookIT/decessiITA.json";
+
+
 var options = {
   responsive: true,
   maintainAspectRatio: false,
@@ -33,10 +36,12 @@ $(document).ready(function () {
   var dataAggiornamento = getDataFromString(aggiornamentoNazionaleLatest[0].data);
   $('#dataAgg').text(getDateOraIta(dataAggiornamento));
 
+  elaboraDatiDeceduti();
+
 });
 
 
-function elaboraDatiAndamentoNazionale(){
+function elaboraDatiAndamentoNazionale() {
   var jsonResultAndamentoNazionale = getDatiAndamentoNazionale();
   var labeldata = [];
   var tamponi = [];
@@ -51,7 +56,7 @@ function elaboraDatiAndamentoNazionale(){
     labeldata.push(getDateIta(dataRilevamento));
     tamponi.push(jsonResultAndamentoNazionale[i].tamponi);
     terapia_intensiva.push(jsonResultAndamentoNazionale[i].terapia_intensiva);
-    deceduti.push(jsonResultAndamentoNazionale [i].deceduti);
+    deceduti.push(jsonResultAndamentoNazionale[i].deceduti);
     totale_attualmente_positivi.push(jsonResultAndamentoNazionale[i].totale_attualmente_positivi);
   }
 
@@ -61,7 +66,7 @@ function elaboraDatiAndamentoNazionale(){
 }
 
 
-function elaboraDatiProvinciaPz(){
+function elaboraDatiProvinciaPz() {
   var jsonProvince = getDatiProvince();
   var labeldata = [];
   var tamponi = [];
@@ -72,16 +77,49 @@ function elaboraDatiProvinciaPz(){
 
   for (var i = 0; i < jsonProvince.length; i++) {
 
-    if(jsonProvince[i].sigla_provincia == 'PZ') {
+    if (jsonProvince[i].sigla_provincia == 'PZ') {
       var dataRilevamento = getDataFromString(jsonProvince
-        [i].data);
-        labeldata.push(getDateIta(dataRilevamento));
-        totale_casi.push(jsonProvince[i].totale_casi);
+      [i].data);
+      labeldata.push(getDateIta(dataRilevamento));
+      totale_casi.push(jsonProvince[i].totale_casi);
     }
   }
   renderChartLinePz(labeldata, totale_casi);
 
 }
+
+function elaboraDatiDeceduti() {
+  var jsonDeceduti = getDatiDecedutiTrend();
+  var labeldata = [];
+  var giorniArrayTemp = jsonDeceduti.giorno;
+  var deceduti = jsonDeceduti.decessi;
+
+  for (var i = 0; i < giorniArrayTemp.length; i++) {
+    var dataString = getDataFromString(giorniArrayTemp[i]);
+    labeldata.push(getDateIta(dataString));
+  }
+  renderChartDeceduti(labeldata, deceduti);
+
+}
+
+
+// trend deceduti
+function renderChartDeceduti(labeldata, deceduti) {
+  var ctx = document.getElementById("deceduti").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labeldata,
+      datasets: [{
+        label: 'Deceduti',
+        data: deceduti,
+        borderColor: "#1e17cf",
+        options: options
+      }]
+    },
+  });
+}
+
 
 
 
@@ -171,24 +209,23 @@ function getDatiAndamentoNazionale() {
 
 function getDatiAndamentoNazionaleLatest() {
 
-
-var jsonResultAndamentoNazionaleLatest;
-$.ajax({
-  dataType: "json",
-  url: urlAndamentoNazionaleLatest
-  ,
-  async: false,
-  data: jsonResultAndamentoNazionaleLatest
-  ,
-  success: function (data) {
-    jsonResultAndamentoNazionaleLatest
-      = data;
-  },
-  error: function (e) {
-    console.log("errore: " + e);
-  }
-});
-return jsonResultAndamentoNazionaleLatest;
+  var jsonResultAndamentoNazionaleLatest;
+  $.ajax({
+    dataType: "json",
+    url: urlAndamentoNazionaleLatest
+    ,
+    async: false,
+    data: jsonResultAndamentoNazionaleLatest
+    ,
+    success: function (data) {
+      jsonResultAndamentoNazionaleLatest
+        = data;
+    },
+    error: function (e) {
+      console.log("errore: " + e);
+    }
+  });
+  return jsonResultAndamentoNazionaleLatest;
 
 }
 
@@ -213,13 +250,36 @@ function getDatiProvince() {
 }
 
 
+function getDatiDecedutiTrend() {
+
+  var jsonTrendDeceduti;
+  $.ajax({
+    dataType: "json",
+    url: urlAndamentoDeceduti
+    ,
+    async: false,
+    data: jsonTrendDeceduti
+    ,
+    success: function (data) {
+      jsonTrendDeceduti = data;
+    },
+    error: function (e) {
+      console.log("errore: " + e);
+    }
+  });
+  return jsonTrendDeceduti;
+
+
+}
+
+
 
 function getDateIta(d) {
   return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 }
 
 function getDateOraIta(d) {
-  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " alle ore " +d.getHours();
+  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " alle ore " + d.getHours();
 }
 
 function getDataFromString(stringDate) {
