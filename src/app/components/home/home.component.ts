@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { RecuperoJsonService } from '../../services/recupero-json.service';
 
 import { AndamentoNazionaleDto } from '../../models/andamento-nazionale-dto';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,12 +14,31 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   dataAggiornamento: string;
+  json: string;
+  primo: AndamentoNazionaleDto;
+  andamento: AndamentoNazionaleDto[] = [];
 
   constructor(
-  ) {}
+    private recuperoJsonService: RecuperoJsonService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-   // this.dataAggiornamento = new Date().toLocaleString();
+    // this.dataAggiornamento = new Date().toLocaleString();
+    this.initAndamentoNazionale();
+
+  }
+
+  initAndamentoNazionale(): void {
+    this.recuperoJsonService.getAndamentoNazionale().subscribe(
+      data => {
+        this.andamento = data;
+        console.log('a: ' + JSON.stringify(this.andamento));
+      },
+      error => {
+        console.log('errore');
+      }
+    );
   }
 
 }
