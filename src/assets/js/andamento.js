@@ -72,6 +72,7 @@ function elaboraDatiRegioneBasilicata() {
   var terapia_intensiva = [];
   var totale_casi = [];
   var tamponi = [];
+  var deceduti = [];
 
   for (var i = 0; i < jsonRegioni.length; i++) {
 
@@ -82,10 +83,11 @@ function elaboraDatiRegioneBasilicata() {
       terapia_intensiva.push(jsonRegioni[i].terapia_intensiva);
       totale_casi.push(jsonRegioni[i].totale_casi);
       tamponi.push(jsonRegioni[i].tamponi);
+      deceduti.push(jsonRegioni[i].deceduti);
 
     }
   }
-  renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi);
+  renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti);
 
 }
 
@@ -240,7 +242,7 @@ function renderChartLinePz(labeldata, totale_casiPz, totale_casiMt) {
   });
 }
 
-function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi) {
+function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti) {
   var ctx = document.getElementById("basilicata").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'bar',
@@ -249,8 +251,8 @@ function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, t
       datasets: [{
         label: 'Terapia intensiva',
         data: terapia_intensiva,
-        borderColor: "#ff0000",
-        backgroundColor: "#ff0000"
+        borderColor: "#008080",
+        backgroundColor: "#008080"
       }, {
         label: 'Num. tamponi',
         data: tamponi,
@@ -261,6 +263,11 @@ function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, t
         data: totale_casi,
         borderColor: "#3333cc",
         backgroundColor: "#3333cc"
+      },{
+        label: 'Deceduti',
+        data: deceduti,
+        borderColor: "#ff0000",
+        backgroundColor: "#ff0000"
       }]
     },
   });
