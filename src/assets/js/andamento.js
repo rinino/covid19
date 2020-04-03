@@ -45,6 +45,8 @@ function elaboraDatiAndamentoNazionale() {
   var terapia_intensiva = [];
   var deceduti = [];
   var totale_attualmente_positivi = [];
+  var variazione_totale_positivi = [];
+  var nuovi_positivi = [];
 
   for (var i = 0; i < jsonResultAndamentoNazionale
     .length; i++) {
@@ -54,11 +56,13 @@ function elaboraDatiAndamentoNazionale() {
     tamponi.push(jsonResultAndamentoNazionale[i].tamponi);
     terapia_intensiva.push(jsonResultAndamentoNazionale[i].terapia_intensiva);
     deceduti.push(jsonResultAndamentoNazionale[i].deceduti);
-    totale_attualmente_positivi.push(jsonResultAndamentoNazionale[i].totale_attualmente_positivi);
+    totale_attualmente_positivi.push(jsonResultAndamentoNazionale[i].totale_positivi);
+    variazione_totale_positivi.push(jsonResultAndamentoNazionale[i].variazione_totale_positivi);
+    nuovi_positivi.push(jsonResultAndamentoNazionale[i].nuovi_positivi);
   }
-
   renderChartLine1(labeldata, tamponi, totale_attualmente_positivi);
   renderChartLine2(labeldata, terapia_intensiva, deceduti);
+  renderChartLine3(labeldata, variazione_totale_positivi, nuovi_positivi);
 
 }
 
@@ -69,8 +73,6 @@ function elaboraDatiRegioneBasilicata() {
   var terapia_intensiva = [];
   var totale_casi = [];
   var tamponi = [];
-
-
 
   for (var i = 0; i < jsonRegioni.length; i++) {
 
@@ -87,9 +89,6 @@ function elaboraDatiRegioneBasilicata() {
   renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi);
 
 }
-
-
-
 
 function elaboraDatiProvinciaPz() {
   var jsonProvince = getDatiProvince();
@@ -150,7 +149,7 @@ function renderChartDeceduti(labeldata, deceduti) {
 }
 
 // dati generali
-function renderChartLine1(labeldata, tamponi, totale_attualmente_positivi) {
+function renderChartLine1(labeldata, tamponi, totale_attualmente_positivi, variazione_totale_positivi) {
   var ctx = document.getElementById("generale").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
@@ -166,7 +165,7 @@ function renderChartLine1(labeldata, tamponi, totale_attualmente_positivi) {
         data: totale_attualmente_positivi,
         borderColor: "#1e17cf",
         options: options
-      }]
+      },]
     },
   });
 }
@@ -185,6 +184,28 @@ function renderChartLine2(labeldata, terapia_intensiva, deceduti) {
       }, {
         label: 'Deceduti',
         data: deceduti,
+        borderColor: "#FF0000",
+        options: options
+      }]
+    },
+  });
+}
+
+
+function renderChartLine3(labeldata, variazione_totale_positivi, nuovi_positivi) {
+  var ctx = document.getElementById("generale3").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labeldata,
+      datasets: [{
+        label: 'Variazione totale positivi',
+        data: variazione_totale_positivi,
+        borderColor: "#3e95cd",
+        options: options
+      }, {
+        label: 'Nuovi positivi',
+        data: nuovi_positivi,
         borderColor: "#FF0000",
         options: options
       }]

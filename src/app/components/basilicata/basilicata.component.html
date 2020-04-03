@@ -1,0 +1,18 @@
+<script src="node_modules/chart.js/Chart.min.js"></script>
+<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
+<div class="content" role="main">
+
+  <h3>Grafici regione Basilicata</h3>
+  <!-- <div class="container_grafici">
+    <label class="titolo_grafico">Andamento province di Potenza e matera</label>
+    <canvas id="potenza_matera">{{ lineChart }}</canvas>
+  </div> -->
+
+  <div class="container_grafici" *ngIf="barChart">
+    <label class="titolo_grafico">Andamento regione Basilicata</label>
+    <canvas #basilicata id="basilicata">{{ barChart }}</canvas>
+  </div>
+
+</div>
+

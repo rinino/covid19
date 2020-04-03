@@ -25,20 +25,20 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // this.dataAggiornamento = new Date().toLocaleString();
-    this.initAndamentoNazionale();
+    //this.initAndamentoNazionale();
 
   }
 
-  initAndamentoNazionale(): void {
-    this.recuperoJsonService.getAndamentoNazionale().subscribe(
-      data => {
-        this.andamento = data;
-        console.log('a: ' + JSON.stringify(this.andamento));
-      },
-      error => {
-        console.log('errore');
-      }
-    );
-  }
+  // initAndamentoNazionale(): void {
+  //   this.recuperoJsonService.getAndamentoNazionale().subscribe(
+  //     data => {
+  //       this.andamento = data;
+  //       console.log('a: ' + JSON.stringify(this.andamento));
+  //     },
+  //     error => {
+  //       console.log('errore');
+  //     }
+  //   );
+  // }
 
 }
