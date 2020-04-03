@@ -3,6 +3,7 @@ var urlAndamentoNazionale = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/
 var urlProvince = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province.json";
 var urlAndamentoNazionaleLatest = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json";
 var urlAndamentoDeceduti = "https://raw.githubusercontent.com/VitoFanelli/covid-19-italy/master/notebookIT/decessiITA.json";
+var urlAndamentoDimessi = "https://raw.githubusercontent.com/VitoFanelli/covid-19-italy/master/notebookIT/dimessiITA.json";
 var urlRegioni = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json";
 
 function getDatiAndamentoNazionale() {
@@ -103,5 +104,26 @@ function getDatiDecedutiTrend() {
     }
   });
   return jsonTrendDeceduti;
+
+}
+
+
+function getDatiDimessiTrend() {
+  var jsonTrendDimessi;
+  $.ajax({
+    dataType: "json",
+    url: urlAndamentoDimessi
+    ,
+    async: false,
+    data: jsonTrendDimessi
+    ,
+    success: function (data) {
+      jsonTrendDimessi = data;
+    },
+    error: function (e) {
+      console.log("errore: " + e);
+    }
+  });
+  return jsonTrendDimessi;
 
 }

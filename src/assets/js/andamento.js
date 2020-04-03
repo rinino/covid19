@@ -7,7 +7,7 @@ $(document).ready(function () {
   var dataAggiornamento = getDataFromString(aggiornamentoNazionaleLatest[0].data);
   $('#dataAgg').text(getDateOraIta(dataAggiornamento));
 
-  elaboraDatiDeceduti();
+  elaboraDatiDecedutiDimessi();
   elaboraDatiRegioneBasilicata();
 
 });
@@ -115,23 +115,25 @@ function elaboraDatiProvinciaPz() {
 
 }
 
-function elaboraDatiDeceduti() {
+function elaboraDatiDecedutiDimessi() {
   var jsonDeceduti = getDatiDecedutiTrend();
+  var jsonDimessi = getDatiDimessiTrend();
   var labeldata = [];
   var giorniArrayTemp = jsonDeceduti.giorno;
   var deceduti = jsonDeceduti.decessi;
+  var dimessi = jsonDimessi.dimessi;
 
   for (var i = 0; i < giorniArrayTemp.length; i++) {
     var dataString = getDataFromString(giorniArrayTemp[i]);
     labeldata.push(getDateIta(dataString));
   }
-  renderChartDeceduti(labeldata, deceduti);
+  renderChartDecedutiDimessi(labeldata, deceduti, dimessi);
 
 }
 
 
 // trend deceduti
-function renderChartDeceduti(labeldata, deceduti) {
+function renderChartDecedutiDimessi(labeldata, deceduti, dimessi) {
   var ctx = document.getElementById("deceduti").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
@@ -140,7 +142,12 @@ function renderChartDeceduti(labeldata, deceduti) {
       datasets: [{
         label: 'Deceduti',
         data: deceduti,
-        borderColor: "#1e17cf",
+        borderColor: "#ff0000",
+        options: options
+      },{
+        label: 'Dimessi',
+        data: dimessi,
+        borderColor: "#00ff00",
         options: options
       }]
     },
@@ -190,7 +197,6 @@ function renderChartLine2(labeldata, terapia_intensiva, deceduti) {
   });
 }
 
-
 function renderChartLine3(labeldata, variazione_totale_positivi, nuovi_positivi) {
   var ctx = document.getElementById("generale3").getContext('2d');
   var myChart = new Chart(ctx, {
@@ -205,7 +211,7 @@ function renderChartLine3(labeldata, variazione_totale_positivi, nuovi_positivi)
       }, {
         label: 'Nuovi positivi',
         data: nuovi_positivi,
-        borderColor: "#FF0000",
+        borderColor: "#00ff00",
         options: options
       }]
     },
