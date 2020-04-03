@@ -12,7 +12,6 @@ $(document).ready(function () {
 
 });
 
-
 var options = {
   responsive: true,
   maintainAspectRatio: false,
