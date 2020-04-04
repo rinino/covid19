@@ -21,7 +21,7 @@ var options = {
   scales: {
     xAxes: [{
       ticks: {
-        fontColor: "white",
+        fontColor: "white"
       }
     }],
     yAxes: [{

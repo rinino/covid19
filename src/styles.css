@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 :host {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
@@ -9,7 +8,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 h1,
 h2,
@@ -23,7 +21,6 @@ h6 {
 p {
   margin: 0;
 }
-
 
 a,
   a:visited,
@@ -48,7 +45,7 @@ a,
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #1976d2;
+  background-color: #000;
   color: white;
   font-weight: 600;
 }
