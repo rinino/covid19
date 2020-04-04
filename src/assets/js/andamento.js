@@ -73,6 +73,7 @@ function elaboraDatiRegioneBasilicata() {
   var totale_casi = [];
   var tamponi = [];
   var deceduti = [];
+  var dimessi_guariti = [];
 
   for (var i = 0; i < jsonRegioni.length; i++) {
 
@@ -84,10 +85,11 @@ function elaboraDatiRegioneBasilicata() {
       totale_casi.push(jsonRegioni[i].totale_casi);
       tamponi.push(jsonRegioni[i].tamponi);
       deceduti.push(jsonRegioni[i].deceduti);
+      dimessi_guariti.push(jsonRegioni[i].dimessi_guariti);
 
     }
   }
-  renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti);
+  renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti, dimessi_guariti);
 
 }
 
@@ -242,7 +244,7 @@ function renderChartLinePz(labeldata, totale_casiPz, totale_casiMt) {
   });
 }
 
-function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti) {
+function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti, dimessi_guariti) {
   var ctx = document.getElementById("basilicata").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'bar',
@@ -268,6 +270,11 @@ function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, t
         data: deceduti,
         borderColor: "#ff0000",
         backgroundColor: "#ff0000"
+      },{
+        label: 'Dimessi/Guariti',
+        data: dimessi_guariti,
+        borderColor: "#00ff00",
+        backgroundColor: "#00ff00"
       }]
     },
   });
