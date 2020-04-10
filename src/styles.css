@@ -23,15 +23,19 @@ p {
 }
 
 a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
+a:visited,
+a:hover {
+  color: rgb(0, 60, 255);
+  text-decoration: none;
+}
 
-  a:hover {
-    color: #125699;
-  }
+a:hover {
+  color: rgb(0, 60, 255);
+}
+
+body {
+  background-color: #e8e8e8;
+}
 
 .spacer {
   flex: 1;
@@ -63,7 +67,6 @@ a,
   opacity: 0.8;
 }
 
-
 .toolbar #linkedin-logo {
   height: 40px;
   margin: 0 16px;
@@ -73,15 +76,14 @@ a,
   opacity: 0.8;
 }
 
-
-
 .content {
   display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
+  margin: 65px auto 32px;
+  padding: 0 30px;
   max-width: 960px;
   flex-direction: column;
   align-items: center;
+  background-color: #fafafa;
 }
 
 svg.material-icons {
@@ -92,7 +94,6 @@ svg.material-icons {
 svg.material-icons:not(:last-child) {
   margin-right: 8px;
 }
-
 
 .card svg.material-icons path {
   fill: #888;
@@ -157,7 +158,6 @@ svg.material-icons:not(:last-child) {
   margin-left: 60px;
 }
 
-
 .circle-link {
   height: 40px;
   width: 40px;
@@ -178,7 +178,6 @@ svg.material-icons:not(:last-child) {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
-
 footer {
   margin-top: 8px;
   display: flex;
@@ -196,7 +195,7 @@ footer a {
 }
 
 .titolo_grafico {
-  padding-left: 45%;
+  padding-left: 1%;
   font-weight: bold;
 }
 
@@ -205,6 +204,7 @@ footer a {
   width: 100%;
   height: 100%;
   padding: 5% 5px 5px 5px;
+  background-color: #fafafa;
 }
 
 #grafici {
@@ -214,30 +214,37 @@ footer a {
 }
 
 .noteAlt {
-     background-color: #f0f7fb;
-     background-image: url(assets/images/css-box-icon-3.png);
-     background-position: 9px 50%;
-     background-repeat: no-repeat;
-     border-left: solid 4px #3498db;
-     line-height: 18px;
-     overflow: hidden;
-     padding: 15px 60px;
+  background-color: #f0f7fb;
+  background-image: url(assets/images/css-box-icon-3.png);
+  background-position: 9px 50%;
+  background-repeat: no-repeat;
+  border-left: solid 4px #3498db;
+  line-height: 18px;
+  overflow: hidden;
+  padding: 15px 60px;
 }
 
 .infoP {
   padding: 5px 0 0 5px;
 }
 
+.no-js #loader {
+  display: none;
+}
 
+.js #loader {
+  display: block;
+  position: absolute;
+  left: 100px;
+  top: 0;
+}
 
-.no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(http://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(http://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
 }
