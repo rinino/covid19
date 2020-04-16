@@ -1,11 +1,10 @@
-
-
 $(document).ready(function () {
   elaboraDatiAndamentoNazionale();
   elaboraDatiProvinciaPz();
   var aggiornamentoNazionaleLatest = getDatiAndamentoNazionaleLatest();
   var dataAggiornamento = getDataFromString(aggiornamentoNazionaleLatest[0].data);
   $('#dataAgg').text(getDateOraIta(dataAggiornamento));
+  $('#dataRilevamentoBox').text(getDateOraIta(dataAggiornamento));
 
   elaboraDatiDecedutiDimessi();
   elaboraDatiRegioneBasilicata();
@@ -49,8 +48,7 @@ function elaboraDatiAndamentoNazionale() {
 
   for (var i = 0; i < jsonResultAndamentoNazionale
     .length; i++) {
-    var dataRilevamento = getDataFromString(jsonResultAndamentoNazionale
-    [i].data);
+    var dataRilevamento = getDataFromString(jsonResultAndamentoNazionale[i].data);
     labeldata.push(getDateIta(dataRilevamento));
     tamponi.push(jsonResultAndamentoNazionale[i].tamponi);
     terapia_intensiva.push(jsonResultAndamentoNazionale[i].terapia_intensiva);
@@ -78,8 +76,7 @@ function elaboraDatiRegioneBasilicata() {
   for (var i = 0; i < jsonRegioni.length; i++) {
 
     if (jsonRegioni[i].codice_regione == 17) {
-      var dataRilevamento = getDataFromString(jsonRegioni
-      [i].data);
+      var dataRilevamento = getDataFromString(jsonRegioni[i].data);
       labeldata.push(getDateIta(dataRilevamento));
       terapia_intensiva.push(jsonRegioni[i].terapia_intensiva);
       totale_casi.push(jsonRegioni[i].totale_casi);
@@ -90,6 +87,28 @@ function elaboraDatiRegioneBasilicata() {
     }
   }
   renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti, dimessi_guariti);
+
+  var ultimoDatoDeceduti = deceduti[deceduti.length - 1];
+  var ultimoDatoTotaleCasi = totale_casi[totale_casi.length -1];
+  var ultimoDatoTamponi = tamponi[tamponi.length -1];
+  var ultimoDatoDimessi = dimessi_guariti[dimessi_guariti.length -1];
+  var ultimoDatoTerapia = terapia_intensiva[terapia_intensiva.length -1];
+
+  $("#totTamponi").text(ultimoDatoTamponi);
+  $("#totCasi").text(ultimoDatoTotaleCasi);
+  $("#totDecedut").text(ultimoDatoDeceduti);
+  $("#totTerapia").text(ultimoDatoTerapia);
+  $("#totGuariti").text(ultimoDatoDimessi);
+
+  var percentualeDecedutiCasiTotali = calcolaPercentuale(ultimoDatoTotaleCasi, ultimoDatoDeceduti);
+  $("#decedutiSuCasi").text(percentualeDecedutiCasiTotali);
+
+  var percentualeGuaritiCasiTotali = calcolaPercentuale(ultimoDatoTotaleCasi, ultimoDatoDimessi);
+  $("#guaritiSuCasi").text(percentualeGuaritiCasiTotali);
+
+  var percentualePositiviTamponi = calcolaPercentuale(ultimoDatoTamponi, ultimoDatoTotaleCasi);
+  $("#positiviTamponi").text(percentualePositiviTamponi);
+
 
 }
 
@@ -102,15 +121,13 @@ function elaboraDatiProvinciaPz() {
   for (var i = 0; i < jsonProvince.length; i++) {
 
     if (jsonProvince[i].sigla_provincia == 'PZ') {
-      var dataRilevamento = getDataFromString(jsonProvince
-      [i].data);
+      var dataRilevamento = getDataFromString(jsonProvince[i].data);
       labeldata.push(getDateIta(dataRilevamento));
       totale_casiPz.push(jsonProvince[i].totale_casi);
     }
 
     if (jsonProvince[i].sigla_provincia == 'MT') {
-      var dataRilevamento = getDataFromString(jsonProvince
-      [i].data);
+      var dataRilevamento = getDataFromString(jsonProvince[i].data);
       totale_casiMt.push(jsonProvince[i].totale_casi);
     }
 
@@ -148,7 +165,7 @@ function renderChartDecedutiDimessi(labeldata, deceduti, dimessi) {
         data: deceduti,
         borderColor: "#ff0000",
         options: options
-      },{
+      }, {
         label: 'Dimessi',
         data: dimessi,
         borderColor: "#00ff00",
@@ -175,7 +192,7 @@ function renderChartLine1(labeldata, tamponi, totale_attualmente_positivi, varia
         data: totale_attualmente_positivi,
         borderColor: "#1e17cf",
         options: options
-      },]
+      }, ]
     },
   });
 }
@@ -234,7 +251,7 @@ function renderChartLinePz(labeldata, totale_casiPz, totale_casiMt) {
         data: totale_casiPz,
         borderColor: "#ff0000",
         options: options
-      },{
+      }, {
         label: 'Totale casi MT',
         data: totale_casiMt,
         borderColor: "#0000FF",
@@ -265,12 +282,12 @@ function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, t
         data: totale_casi,
         borderColor: "#3333cc",
         backgroundColor: "#3333cc"
-      },{
+      }, {
         label: 'Deceduti',
         data: deceduti,
         borderColor: "#ff0000",
         backgroundColor: "#ff0000"
-      },{
+      }, {
         label: 'Dimessi/Guariti',
         data: dimessi_guariti,
         borderColor: "#00ff00",

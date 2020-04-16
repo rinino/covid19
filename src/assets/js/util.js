@@ -21,3 +21,8 @@ function formatNumber(num) {
       return ret.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
   }
 }
+
+function calcolaPercentuale(totale, daValutare) {
+  var finalValue = daValutare*100 / totale;
+  return finalValue.toFixed(2).replace(".", ",");
+}
