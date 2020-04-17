@@ -1,13 +1,13 @@
 $(document).ready(function () {
   elaboraDatiAndamentoNazionale();
-  elaboraDatiProvinciaPz();
+  // elaboraDatiProvinciaPz();
   var aggiornamentoNazionaleLatest = getDatiAndamentoNazionaleLatest();
   var dataAggiornamento = getDataFromString(aggiornamentoNazionaleLatest[0].data);
   $('#dataAgg').text(getDateOraIta(dataAggiornamento));
   $('#dataRilevamentoBox').text(getDateOraIta(dataAggiornamento));
 
   elaboraDatiDecedutiDimessi();
-  elaboraDatiRegioneBasilicata();
+  // elaboraDatiRegioneBasilicata();
 
 });
 
@@ -64,78 +64,6 @@ function elaboraDatiAndamentoNazionale() {
 }
 
 
-function elaboraDatiRegioneBasilicata() {
-  var jsonRegioni = getDatiRegioni();
-  var labeldata = [];
-  var terapia_intensiva = [];
-  var totale_casi = [];
-  var tamponi = [];
-  var deceduti = [];
-  var dimessi_guariti = [];
-
-  for (var i = 0; i < jsonRegioni.length; i++) {
-
-    if (jsonRegioni[i].codice_regione == 17) {
-      var dataRilevamento = getDataFromString(jsonRegioni[i].data);
-      labeldata.push(getDateIta(dataRilevamento));
-      terapia_intensiva.push(jsonRegioni[i].terapia_intensiva);
-      totale_casi.push(jsonRegioni[i].totale_casi);
-      tamponi.push(jsonRegioni[i].tamponi);
-      deceduti.push(jsonRegioni[i].deceduti);
-      dimessi_guariti.push(jsonRegioni[i].dimessi_guariti);
-
-    }
-  }
-  renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti, dimessi_guariti);
-
-  var ultimoDatoDeceduti = deceduti[deceduti.length - 1];
-  var ultimoDatoTotaleCasi = totale_casi[totale_casi.length -1];
-  var ultimoDatoTamponi = tamponi[tamponi.length -1];
-  var ultimoDatoDimessi = dimessi_guariti[dimessi_guariti.length -1];
-  var ultimoDatoTerapia = terapia_intensiva[terapia_intensiva.length -1];
-
-  $("#totTamponi").text(ultimoDatoTamponi);
-  $("#totCasi").text(ultimoDatoTotaleCasi);
-  $("#totDecedut").text(ultimoDatoDeceduti);
-  $("#totTerapia").text(ultimoDatoTerapia);
-  $("#totGuariti").text(ultimoDatoDimessi);
-
-  var percentualeDecedutiCasiTotali = calcolaPercentuale(ultimoDatoTotaleCasi, ultimoDatoDeceduti);
-  $("#decedutiSuCasi").text(percentualeDecedutiCasiTotali);
-
-  var percentualeGuaritiCasiTotali = calcolaPercentuale(ultimoDatoTotaleCasi, ultimoDatoDimessi);
-  $("#guaritiSuCasi").text(percentualeGuaritiCasiTotali);
-
-  var percentualePositiviTamponi = calcolaPercentuale(ultimoDatoTamponi, ultimoDatoTotaleCasi);
-  $("#positiviTamponi").text(percentualePositiviTamponi);
-
-
-}
-
-function elaboraDatiProvinciaPz() {
-  var jsonProvince = getDatiProvince();
-  var labeldata = [];
-  var totale_casiPz = [];
-  var totale_casiMt = [];
-
-  for (var i = 0; i < jsonProvince.length; i++) {
-
-    if (jsonProvince[i].sigla_provincia == 'PZ') {
-      var dataRilevamento = getDataFromString(jsonProvince[i].data);
-      labeldata.push(getDateIta(dataRilevamento));
-      totale_casiPz.push(jsonProvince[i].totale_casi);
-    }
-
-    if (jsonProvince[i].sigla_provincia == 'MT') {
-      var dataRilevamento = getDataFromString(jsonProvince[i].data);
-      totale_casiMt.push(jsonProvince[i].totale_casi);
-    }
-
-  }
-  renderChartLinePz(labeldata, totale_casiPz, totale_casiMt);
-
-}
-
 function elaboraDatiDecedutiDimessi() {
   var jsonDeceduti = getDatiDecedutiTrend();
   var jsonDimessi = getDatiDimessiTrend();
@@ -155,144 +83,141 @@ function elaboraDatiDecedutiDimessi() {
 
 // trend deceduti
 function renderChartDecedutiDimessi(labeldata, deceduti, dimessi) {
-  var ctx = document.getElementById("deceduti").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labeldata,
-      datasets: [{
-        label: 'Deceduti',
-        data: deceduti,
-        borderColor: "#ff0000",
-        options: options
-      }, {
-        label: 'Dimessi',
-        data: dimessi,
-        borderColor: "#00ff00",
-        options: options
-      }]
-    },
-  });
+  var ctx = document.getElementById("deceduti");
+  if(ctx != null) {
+    var a = ctx.getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labeldata,
+        datasets: [{
+          label: 'Deceduti',
+          data: deceduti,
+          borderColor: "#ff0000",
+          options: options
+        }, {
+          label: 'Dimessi',
+          data: dimessi,
+          borderColor: "#00ff00",
+          options: options
+        }]
+      },
+    });
+  }
 }
 
 // dati generali
 function renderChartLine1(labeldata, tamponi, totale_attualmente_positivi, variazione_totale_positivi) {
-  var ctx = document.getElementById("generale").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labeldata,
-      datasets: [{
-        label: 'Tamponi',
-        data: tamponi,
-        borderColor: "#8e5ea2",
-        options: options
-      }, {
-        label: 'Attualmente positivi',
-        data: totale_attualmente_positivi,
-        borderColor: "#1e17cf",
-        options: options
-      }, ]
-    },
-  });
+  var ctx = document.getElementById("generale");
+
+  if(ctx != null) {
+    var e = ctx.getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labeldata,
+        datasets: [{
+          label: 'Tamponi',
+          data: tamponi,
+          borderColor: "#8e5ea2",
+          options: options
+        }, {
+          label: 'Attualmente positivi',
+          data: totale_attualmente_positivi,
+          borderColor: "#1e17cf",
+          options: options
+        }, ]
+      },
+    });
+  }
 }
 
 function renderChartLine2(labeldata, terapia_intensiva, deceduti) {
-  var ctx = document.getElementById("generale2").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labeldata,
-      datasets: [{
-        label: 'Terapia intensiva',
-        data: terapia_intensiva,
-        borderColor: "#3e95cd",
-        options: options
-      }, {
-        label: 'Deceduti',
-        data: deceduti,
-        borderColor: "#FF0000",
-        options: options
-      }]
-    },
-  });
+  var ctx = document.getElementById("generale2");
+
+  if(ctx != null) {
+    var a = ctx.getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labeldata,
+        datasets: [{
+          label: 'Terapia intensiva',
+          data: terapia_intensiva,
+          borderColor: "#3e95cd",
+          options: options
+        }, {
+          label: 'Deceduti',
+          data: deceduti,
+          borderColor: "#FF0000",
+          options: options
+        }]
+      },
+    });
+  }
+
 }
 
 function renderChartLine3(labeldata, variazione_totale_positivi, nuovi_positivi) {
-  var ctx = document.getElementById("generale3").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labeldata,
-      datasets: [{
-        label: 'Variazione totale positivi',
-        data: variazione_totale_positivi,
-        borderColor: "#3e95cd",
-        options: options
-      }, {
-        label: 'Nuovi positivi',
-        data: nuovi_positivi,
-        borderColor: "#00ff00",
-        options: options
-      }]
-    },
-  });
+  var ctx = document.getElementById("generale3");
+  if(ctx != null) {
+    var a = ctx.getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labeldata,
+        datasets: [{
+          label: 'Variazione totale positivi',
+          data: variazione_totale_positivi,
+          borderColor: "#3e95cd",
+          options: options
+        }, {
+          label: 'Nuovi positivi',
+          data: nuovi_positivi,
+          borderColor: "#00ff00",
+          options: options
+        }]
+      },
+    });
+  }
 }
 
-// dati provincia pz
-function renderChartLinePz(labeldata, totale_casiPz, totale_casiMt) {
-  var ctx = document.getElementById("potenza_matera").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labeldata,
-      datasets: [{
-        label: 'Totale casi PZ',
-        data: totale_casiPz,
-        borderColor: "#ff0000",
-        options: options
-      }, {
-        label: 'Totale casi MT',
-        data: totale_casiMt,
-        borderColor: "#0000FF",
-        options: options
-      }]
-    },
-  });
-}
 
 function renderGraficoRegioneBasilicata(labeldata, terapia_intensiva, tamponi, totale_casi, deceduti, dimessi_guariti) {
-  var ctx = document.getElementById("basilicata").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labeldata,
-      datasets: [{
-        label: 'Terapia intensiva',
-        data: terapia_intensiva,
-        borderColor: "#008080",
-        backgroundColor: "#008080"
-      }, {
-        label: 'Num. tamponi',
-        data: tamponi,
-        borderColor: "#009933",
-        backgroundColor: "#009933"
-      }, {
-        label: 'Casi totali',
-        data: totale_casi,
-        borderColor: "#3333cc",
-        backgroundColor: "#3333cc"
-      }, {
-        label: 'Deceduti',
-        data: deceduti,
-        borderColor: "#ff0000",
-        backgroundColor: "#ff0000"
-      }, {
-        label: 'Dimessi/Guariti',
-        data: dimessi_guariti,
-        borderColor: "#00ff00",
-        backgroundColor: "#00ff00"
-      }]
-    },
-  });
+  var ctx = document.getElementById("basilicata");
+  if(ctx != null) {
+    var a = ctx.getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labeldata,
+        datasets: [{
+          label: 'Terapia intensiva',
+          data: terapia_intensiva,
+          borderColor: "#008080",
+          backgroundColor: "#008080"
+        }, {
+          label: 'Num. tamponi',
+          data: tamponi,
+          borderColor: "#009933",
+          backgroundColor: "#009933"
+        }, {
+          label: 'Casi totali',
+          data: totale_casi,
+          borderColor: "#3333cc",
+          backgroundColor: "#3333cc"
+        }, {
+          label: 'Deceduti',
+          data: deceduti,
+          borderColor: "#ff0000",
+          backgroundColor: "#ff0000"
+        }, {
+          label: 'Dimessi/Guariti',
+          data: dimessi_guariti,
+          borderColor: "#00ff00",
+          backgroundColor: "#00ff00"
+        }]
+      },
+    });
+  }
 }

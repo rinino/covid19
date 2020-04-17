@@ -1,18 +1,51 @@
-<script src="node_modules/chart.js/Chart.min.js"></script>
-<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+<!-- <script src="node_modules/chart.js/Chart.min.js"></script>
+<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script> -->
 
 <div class="content" role="main">
 
-  <h3>Grafici regione Basilicata</h3>
-  <!-- <div class="container_grafici">
-    <label class="titolo_grafico">Andamento province di Potenza e matera</label>
-    <canvas id="potenza_matera">{{ lineChart }}</canvas>
-  </div> -->
+  <a [routerLink]="['/']">Home</a>
 
-  <div class="container_grafici" *ngIf="barChart">
-    <label class="titolo_grafico">Andamento regione Basilicata</label>
-    <canvas #basilicata id="basilicata">{{ barChart }}</canvas>
+  <h3>Grafici regione Basilicata</h3>
+
+  <div class="container_grafici">
+    <label class="titolo_grafico">Andamento province di Potenza e matera</label>
+    <canvas baseChart id="potenza_matera" [datasets]="lineChartData" [labels]="lineChartLabels"
+      [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+      [plugins]="lineChartPlugins">
+    </canvas>
   </div>
 
-</div>
 
+  <div class="container_grafici">
+    <label class="titolo_grafico">Andamento regione Basilicata</label>
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+      [colors]="barChartColors" [legend]="barChartLegend" [chartType]="barChartType" [plugins]="barChartPlugins">
+    </canvas>
+  </div>
+
+  <div class="container_grafici">
+
+    <div class="percentuale">
+      <h5>* Dati ultimo rilevamento (<span id="dataRilevamentoBox">{{dataAggiornamento}}</span>):</h5>
+      <p>Tamponi effettuati: <span id="totTamponi" class="bold">{{ultimoDatoTamponi}}</span></p>
+      <p>Casi totali: <span id="totCasi" class="bold">{{ultimoDatoTotaleCasi}}</span></p>
+      <p>Deceduti: <span id="totDecedut" class="bold">{{ultimoDatoDeceduti}}</span></p>
+      <p>Terapia intensiva: <span id="totTerapia" class="bold">{{ultimoDatoTerapia}}</span></p>
+      <p>Guariti/dimessi: <span id="totGuariti" class="bold">{{ultimoDatoDimessi}}</span></p>
+    </div>
+
+    <div class="totali">
+      <h5>* Percentuali:</h5>
+      <p>% positivi su tamponi effettuati: <span id="positiviTamponi" class="bold">{{percentualePositiviTamponi}}</span>
+      </p>
+      <p>% deceduti su casi totali: <span id="decedutiSuCasi" class="bold">{{percentualeDecedutiCasiTotali}}</span></p>
+      <p>% dimessi su casi totali: <span id="guaritiSuCasi" class="bold">{{percentualeGuaritiCasiTotali}}</span></p>
+    </div>
+
+    <p id="asterisco">* Dati riguardanti la sola regione Basilicata</p>
+
+  </div>
+  <a [routerLink]="['/']">Home</a>
+
+
+</div>

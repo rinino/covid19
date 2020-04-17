@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Required services for navigation
+
 import { Routes, RouterModule } from '@angular/router';
+
 // Component
 import {HomeComponent} from '../components/home/home.component';
 import {BasilicataComponent} from '../components/basilicata/basilicata.component';

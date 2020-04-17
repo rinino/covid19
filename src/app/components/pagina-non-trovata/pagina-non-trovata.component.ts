@@ -9,12 +9,11 @@ import { Router } from '@angular/router';
 export class PaginaNonTrovataComponent implements OnInit {
 
   constructor(
-    private router: Router
+   private router: Router
   ) { }
 
   ngOnInit(): void {
   }
-
 
   onClickTornaHome(): void {
     this.router.navigate(['']);

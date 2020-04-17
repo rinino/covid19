@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { RecuperoJsonService } from '../../services/recupero-json.service';
 
@@ -20,12 +19,12 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private recuperoJsonService: RecuperoJsonService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
     // this.dataAggiornamento = new Date().toLocaleString();
-    //this.initAndamentoNazionale();
+    // this.initAndamentoNazionale();
+    console.log('home');
 
   }
 

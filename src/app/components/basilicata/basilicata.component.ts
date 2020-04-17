@@ -1,7 +1,9 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Chart } from 'chart.js';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 // Service
 import { RecuperoJsonService } from '../../services/recupero-json.service';
+import { UtilsService } from '../../services/utils.service';
 // DTO
 import { DatiRegioniDto } from '../../models/dati-regioni-dto';
 
@@ -11,86 +13,142 @@ import { DatiRegioniDto } from '../../models/dati-regioni-dto';
   templateUrl: './basilicata.component.html',
   styleUrls: ['./basilicata.component.css']
 })
-export class BasilicataComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('basilicata') private canvas: any;
+export class BasilicataComponent implements OnInit {
 
 
-  datiRegione: DatiRegioniDto[] = [];
-  barChart = [];
-
-  private ctx: CanvasRenderingContext2D;
+  constructor(
+    private recuperoJsonService: RecuperoJsonService,
+    private utilsService: UtilsService
+  ) { }
 
   // dati regionali
   private labeldata = [];
   private terapiaIntensiva = [];
   private totaleCasi = [];
   private tamponi = [];
+  private deceduti = [];
+  private dimessi = [];
 
-  constructor(
-    private recuperoJsonService: RecuperoJsonService
-  ) { }
+  public ultimoDatoDeceduti: string;
+  public ultimoDatoTotaleCasi: string;
+  public ultimoDatoTamponi: string;
+  public ultimoDatoDimessi: string;
+  public ultimoDatoTerapia: string;
+  public dataAggiornamento: string;
+
+  public percentualeDecedutiCasiTotali: string;
+  public percentualeGuaritiCasiTotali: string;
+  public percentualePositiviTamponi: string;
+
+
+  barChartData: ChartDataSets[] = [
+    { data: this.terapiaIntensiva, label: 'Terapia intensiva' },
+    { data: this.totaleCasi, label: 'Totale casi' },
+    { data: this.tamponi, label: 'Tamponi' },
+    { data: this.deceduti, label: 'Deceduti' },
+    { data: this.dimessi, label: 'Dimessi / Guariti' },
+
+  ];
+  barChartLabels: Label[] = this.labeldata;
+
+  barChartOptions = {
+    responsive: true,
+  };
+
+  barChartColors: Color[] = [
+    {
+      borderColor: '#008080',
+      backgroundColor: '#008080',
+    },
+  ];
+
+  barChartLegend = true;
+  barChartPlugins = [];
+  barChartType = 'bar';
+
+  // dati province pz mt
+
+  private totaleCasiPz = [];
+  private totaleCasiMt = [];
+
+
+  lineChartData: ChartDataSets[] = [
+    { data: this.totaleCasiPz, label: 'Totale casi PZ' },
+    { data: this.totaleCasiMt, label: 'Totale casi MT' },
+
+  ];
+  lineChartLabels: Label[] = this.labeldata;
+
+  lineChartOptions = {
+    responsive: true,
+  };
+
+  lineChartColors: Color[] = [
+    {
+      borderColor: '#008080',
+      backgroundColor: '#008080',
+    },
+  ];
+
+  lineChartLegend = true;
+  lineChartPlugins = [];
+  lineChartType = 'line';
+
 
   ngOnInit(): void {
-    this.ctx = this.canvas._element.nativeElement.getContext('2d');
     this.initDatiRegioni();
-  }
-
-  ngAfterViewInit(): void {
-     this.renderChart(this.labeldata, this.terapiaIntensiva, this.totaleCasi, this.tamponi);
-  }
-
-
-  renderChart(labeldata: any, terapiaIntensiva: any, totaleCasi: any, tamponi: any) {
-    this.barChart = new Chart(this.ctx, {
-      type: 'bar',
-      data: {
-        labels: labeldata,
-        datasets: [{
-          label: 'Terapia intensiva',
-          data: terapiaIntensiva,
-          borderColor: '#ff0000',
-          backgroundColor: '#ff0000'
-        }, {
-          label: 'Num. tamponi',
-          data: tamponi,
-          borderColor: '#009933',
-          backgroundColor: '#009933'
-        }, {
-          label: 'Casi totali',
-          data: totaleCasi,
-          borderColor: '#3333cc',
-          backgroundColor: '#3333cc'
-        }]
-      },
-
-      options: {
-        legend: {
-          display: false
-        },
-        scales: {
-          xAxes: [{
-            display: true
-          }],
-          yAxes: [{
-            display: true
-          }],
-        }
-      }
-    });
+    this.initDatiProvince();
   }
 
   initDatiRegioni(): void {
     this.recuperoJsonService.getDatiRegioni().subscribe(
       data => {
-        // this.datiRegione = data;
-        // this.renderChart(data);
-        data.forEach(regione => {
+        data.forEach((regione: {
+          codice_regione: number; data: any;
+          terapia_intensiva: any; totale_casi: any; tamponi: any,
+          deceduti: any; dimessi_guariti: any;
+        }) => {
           if (regione.codice_regione === 17) {
-            this.labeldata.push(regione.data);
+            this.labeldata.push(this.utilsService.transformDate(regione.data, 'dd/MM/yyyy'));
             this.terapiaIntensiva.push(regione.terapia_intensiva);
             this.totaleCasi.push(regione.totale_casi);
             this.tamponi.push(regione.tamponi);
+            this.deceduti.push(regione.deceduti);
+            this.dimessi.push(regione.dimessi_guariti);
+          }
+        });
+
+        this.dataAggiornamento = this.labeldata[this.labeldata.length - 1];
+        this.ultimoDatoDeceduti = this.deceduti[this.deceduti.length - 1];
+        this.ultimoDatoTotaleCasi = this.totaleCasi[this.totaleCasi.length - 1];
+        this.ultimoDatoTamponi = this.tamponi[this.tamponi.length - 1];
+        this.ultimoDatoDimessi = this.dimessi[this.dimessi.length - 1];
+        this.ultimoDatoTerapia = this.terapiaIntensiva[this.terapiaIntensiva.length - 1];
+
+        this.percentualeDecedutiCasiTotali = this.utilsService.calcolaPercentuale(this.ultimoDatoTotaleCasi, this.ultimoDatoDeceduti);
+        this.percentualeGuaritiCasiTotali = this.utilsService.calcolaPercentuale(this.ultimoDatoTotaleCasi, this.ultimoDatoDimessi);
+        this.percentualePositiviTamponi = this.utilsService.calcolaPercentuale(this.ultimoDatoTamponi, this.ultimoDatoTotaleCasi);
+
+      },
+      error => {
+        console.log('errore');
+      }
+    );
+  }
+
+
+  initDatiProvince(): void {
+    this.recuperoJsonService.getDatiProvince().subscribe(
+      data => {
+        data.forEach((provincia: {
+          sigla_provincia: string;
+          totale_casi: string;
+        }) => {
+          if (provincia.sigla_provincia === 'PZ') {
+            this.totaleCasiPz.push(provincia.totale_casi);
+          }
+          if (provincia.sigla_provincia === 'MT') {
+            this.totaleCasiMt.push(provincia.totale_casi);
           }
         });
       },
@@ -100,4 +158,15 @@ export class BasilicataComponent implements OnInit, AfterViewInit {
     );
   }
 
+
+
+
 }
+
+
+
+
+
+
+
+
