@@ -1,9 +1,4 @@
-<!-- <script src="node_modules/chart.js/Chart.min.js"></script>
-<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script> -->
-
 <div class="content" role="main">
-
-  <a [routerLink]="['/']">Home</a>
 
   <h3>Grafici regione Basilicata</h3>
 
@@ -15,15 +10,11 @@
     </canvas>
   </div>
 
-
   <div class="container_grafici">
     <label class="titolo_grafico">Andamento regione Basilicata</label>
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
       [colors]="barChartColors" [legend]="barChartLegend" [chartType]="barChartType" [plugins]="barChartPlugins">
     </canvas>
-  </div>
-
-  <div class="container_grafici">
 
     <div class="percentuale">
       <h5>* Dati ultimo rilevamento (<span id="dataRilevamentoBox">{{dataAggiornamento}}</span>):</h5>
@@ -45,7 +36,5 @@
     <p id="asterisco">* Dati riguardanti la sola regione Basilicata</p>
 
   </div>
-  <a [routerLink]="['/']">Home</a>
-
 
 </div>

@@ -1,11 +1,10 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { AppConfig } from '../../app.config';
 // Service
 import { RecuperoJsonService } from '../../services/recupero-json.service';
 import { UtilsService } from '../../services/utils.service';
-// DTO
-import { DatiRegioniDto } from '../../models/dati-regioni-dto';
 
 
 @Component({
@@ -57,8 +56,10 @@ export class BasilicataComponent implements OnInit {
 
   barChartColors: Color[] = [
     {
-      borderColor: '#008080',
-      backgroundColor: '#008080',
+      borderColor: [
+        '#FF0000',
+        '#3e95cd'
+      ]
     },
   ];
 
@@ -71,7 +72,6 @@ export class BasilicataComponent implements OnInit {
   private totaleCasiPz = [];
   private totaleCasiMt = [];
 
-
   lineChartData: ChartDataSets[] = [
     { data: this.totaleCasiPz, label: 'Totale casi PZ' },
     { data: this.totaleCasiMt, label: 'Totale casi MT' },
@@ -81,12 +81,18 @@ export class BasilicataComponent implements OnInit {
 
   lineChartOptions = {
     responsive: true,
+    maintainAspectRatio: true,
   };
 
   lineChartColors: Color[] = [
     {
-      borderColor: '#008080',
-      backgroundColor: '#008080',
+      borderColor: [
+        '#FF0000',
+        '#3e95cd'
+      ],
+      // backgroundColor: [
+      //   '#FF0000'
+      // ],
     },
   ];
 
@@ -109,7 +115,7 @@ export class BasilicataComponent implements OnInit {
           deceduti: any; dimessi_guariti: any;
         }) => {
           if (regione.codice_regione === 17) {
-            this.labeldata.push(this.utilsService.transformDate(regione.data, 'dd/MM/yyyy'));
+            this.labeldata.push(this.utilsService.transformDate(regione.data, AppConfig.DATA_ITA_NO_ORE_FORMAT));
             this.terapiaIntensiva.push(regione.terapia_intensiva);
             this.totaleCasi.push(regione.totale_casi);
             this.tamponi.push(regione.tamponi);
@@ -157,16 +163,4 @@ export class BasilicataComponent implements OnInit {
       }
     );
   }
-
-
-
-
 }
-
-
-
-
-
-
-
-

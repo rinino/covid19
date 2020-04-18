@@ -13,17 +13,21 @@ export class RecuperoJsonService {
   private baseUrlAndamentoNazionleLatest: string;
   private baseUrlRegioni: string;
   private baseUrlProvince: string;
+  private baseUrlAndamentoDeceduti: string;
+  private baseUrlAndamentoDimessi: string;
 
   constructor(private httpClient: HttpClient) {
     this.baseUrlAndamentoNazionale = AppConfig.GITLAB_ENDPOINT + AppConfig.ANDAMENTO_NAZIONALE;
     this.baseUrlAndamentoNazionleLatest = AppConfig.GITLAB_ENDPOINT + AppConfig.ANDAMENTO_NAZIONALE_LATEST;
     this.baseUrlRegioni = AppConfig.GITLAB_ENDPOINT + AppConfig.DATI_REGIONI;
     this.baseUrlProvince = AppConfig.GITLAB_ENDPOINT + AppConfig.DATI_PROVINCE;
+    this.baseUrlAndamentoDeceduti = AppConfig.ANDAMENTO_DECEDUTI_COMPLETO;
+    this.baseUrlAndamentoDimessi = AppConfig.ANDAMENTO_DIMESI_COMPLETO;
 
   }
 
-  getAndamentoNazionale(): Observable<AndamentoNazionaleDto[]> {
-   return this.httpClient.get<AndamentoNazionaleDto[]>(this.baseUrlAndamentoNazionale);
+  getAndamentoNazionale(): Observable<any> {
+   return this.httpClient.get<any>(this.baseUrlAndamentoNazionale);
   }
 
   getDatiAndamentoNazionaleLatest(): Observable<any> {
@@ -42,6 +46,14 @@ export class RecuperoJsonService {
 
   getDatiProvince(): Observable<any> {
     return this.httpClient.get<any>(this.baseUrlProvince);
+  }
+
+  getDatiDecedutiTrend(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrlAndamentoDeceduti);
+  }
+
+  getDatiDimessiTrend(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrlAndamentoDimessi);
   }
 
 }

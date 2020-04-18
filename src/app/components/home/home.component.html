@@ -9,39 +9,72 @@
 
   </a> -->
 <div class="content" role="main">
-  <h4>Data aggiornamento:<span id="dataAgg"></span></h4>
-  <div class="noteAlt">
-    <p class="infoP">I dati vengono caricati dai repository della <a href="http://www.protezionecivile.gov.it/"
-        target="_blank">Protezione civile</a>, disponibili <a href="https://github.com/pcm-dpc/COVID-19"
-        target="_blank">qui.</a></p>
-    <p class="infoP">Alcuni grafici sono alimentati grazie alle elaborazioni e il contributo di un mio stimato collega
-      (ecco il suo profilo <a href="https://www.linkedin.com/in/vito-fanelli-71a48873/" target="_blank">Linkedin</a>)
-    </p>
-    <p class="infoP">L'aggiornamento avviene quotidianamente, appena i nuovi dati vengono caricati sui vari repository.
-    </p>
+
+
+  <div class="container">
+    <h3>Ultimi dati (sintesi)</h3>
+    <div class="row">
+      <div class="col-sm">
+        <ul class="list-group">
+          <li class="list-group-item">Data aggiornamento: <span class="datiSintesi">{{dataAggiornamentoLatest}}</span></li>
+          <li class="list-group-item">Ricoveri con sintomi: <span class="datiSintesi">{{ricoveratiConSintomiLatest}}</span></li>
+          <li class="list-group-item">Terapia intensiva: <span class="datiSintesi">{{terapiaIntensivaLatest}}</span></li>
+          <li class="list-group-item">Ospedalizzati: <span class="datiSintesi">{{totaleOspedalizzatiLatest}}</span></li>
+        </ul>
+      </div>
+      <div class="col-sm">
+        <ul class="list-group">
+          <li class="list-group-item">Isolamento domiciliare: <span class="datiSintesi">{{isolamentoDomiciliareLatest}}</span></li>
+          <li class="list-group-item">Totale positivi: <span class="datiSintesi">{{totalePositiviLatest}}</span></li>
+          <li class="list-group-item">Variazioni positivi: <span class="datiSintesi">{{variazioneTotaliPositiviLatest}}</span></li>
+          <li class="list-group-item">Nuovi positivi: <span class="datiSintesi">{{nuoviPositiviLatest}}</span></li>
+        </ul>
+      </div>
+      <div class="col-sm">
+        <ul class="list-group">
+          <li class="list-group-item">Dimessi/guariti: <span class="datiSintesi">{{dimessiGuaritiLatest}}</span></li>
+          <li class="list-group-item">Deceduti: <span class="datiSintesi">{{decedutiLatest}}</span></li>
+          <li class="list-group-item">Tamponi: <span class="datiSintesi">{{tamponiLatest}}</span></li>
+          <li class="list-group-item">Totale casi: <span class="datiSintesi">{{totaleCasiLatest}}</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-    <h3>Grafici nazionali</h3>
-    <div class="container_grafici">
-      <label class="titolo_grafico">Num. tamponi - Num. attualmente positivi</label>
-      <canvas id="generale"></canvas>
-    </div>
+  <h3>Grafici nazionali</h3>
+  <div class="container_grafici">
+    <label class="titolo_grafico">Num. tamponi - Num. attualmente positivi</label>
+    <canvas baseChart id="generale1" [datasets]="lineChartDataTamponiPositivi"
+      [labels]="lineChartLabelsDataTamponiPositivi" [options]="lineChartOptionsDataTamponiPositivi"
+      [colors]="lineChartColorsDataTamponiPositivi" [legend]="lineChartLegendDataTamponiPositivi"
+      [chartType]="lineChartTypeDataTamponiPositivi" [plugins]="lineChartPluginsDataTamponiPositivi">
+    </canvas>
+  </div>
 
-    <div class="container_grafici">
-      <label class="titolo_grafico">Num. terapia intensiva - Num. deceduti</label>
-      <canvas id="generale2"></canvas>
-    </div>
+  <div class="container_grafici">
+    <label class="titolo_grafico">Num. terapia intensiva - Num. deceduti</label>
+    <canvas baseChart id="generale2" [datasets]="lineChartDataTerapiaDeceduti" [labels]="lineChartLabelsTerapiaDeceduti"
+      [options]="lineChartOptionsTerapiaDeceduti" [colors]="lineChartColorsTerapiaDeceduti"
+      [legend]="lineChartLegendTerapiaDeceduti" [chartType]="lineChartTypeTerapiaDeceduti"
+      [plugins]="lineChartPluginsTerapiaDeceduti">
+    </canvas>
+  </div>
 
-    <div class="container_grafici">
-      <label class="titolo_grafico">Totale positivi - Nuovi positivi</label>
-      <canvas id="generale3"></canvas>
-    </div>
+  <div class="container_grafici">
+    <label class="titolo_grafico">Totale positivi - Nuovi positivi</label>
+    <canvas baseChart id="generale3" [datasets]="lineChartDataTotPositiviNuovi"
+      [labels]="lineChartLabelsTotPositiviNuovi" [options]="lineChartOptionsTotPositiviNuovi"
+      [colors]="lineChartColorsTotPositiviNuovi" [legend]="lineChartLegendTotPositiviNuovi"
+      [chartType]="lineChartTypeTotPositiviNuovi" [plugins]="lineChartPluginsTotPositiviNuovi">
+    </canvas>
+  </div>
 
-    <div class="container_grafici">
-      <label class="titolo_grafico">Andamento deceduti</label>
-      <canvas id="deceduti"></canvas>
-    </div>
-
-    <a [routerLink]="['/basilicata']">Basilicata</a>
-
+  <div class="container_grafici">
+    <label class="titolo_grafico">Andamento deceduti</label>
+    <canvas baseChart id="deceduti" [datasets]="lineChartDataTrendDecessi" [labels]="lineChartLabelsTrendDecessi"
+      [options]="lineChartOptionsTrendDecessi" [colors]="lineChartColorsTrendDecessi"
+      [legend]="lineChartLegendTrendDecessi" [chartType]="lineChartTypeTrendDecessi"
+      [plugins]="lineChartPluginsTrendDecessi">
+    </canvas>
+  </div>
 </div>

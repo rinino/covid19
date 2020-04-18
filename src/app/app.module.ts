@@ -9,7 +9,6 @@ import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AndamentoComponent } from './components/andamento/andamento.component';
 import { HomeComponent } from './components/home/home.component';
 import { BasilicataComponent } from './components/basilicata/basilicata.component';
 
@@ -18,21 +17,26 @@ import {RecuperoJsonService} from './services/recupero-json.service';
 import { AppRoutingModule } from './modules/app-routing.module';
 
 import { ChartsModule } from 'ng2-charts';
+import { InfoComponent } from './components/info/info.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    AndamentoComponent,
     HomeComponent,
-    BasilicataComponent
+    BasilicataComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [RecuperoJsonService, DatePipe],
   bootstrap: [AppComponent]

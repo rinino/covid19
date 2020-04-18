@@ -21,4 +21,15 @@ export class UtilsService {
   }
 
 
+  formatNumber(num: string) {
+    if (num == null || num === undefined) {
+      return 'n.d.';
+    }
+    const numFloat = parseFloat(num);
+    const ret = numFloat.toFixed(0);
+    return ret.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
+
+
+
 }

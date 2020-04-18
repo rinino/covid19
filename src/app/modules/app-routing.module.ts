@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from '../components/home/home.component';
 import {BasilicataComponent} from '../components/basilicata/basilicata.component';
 import {PaginaNonTrovataComponent} from '../components/pagina-non-trovata/pagina-non-trovata.component';
+import {InfoComponent} from '../components/info/info.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: 'basilicata',
     component: BasilicataComponent,
     data: { title: 'Covid-19 - Basilicata' }
+  },
+  {
+    path: 'info',
+    component: InfoComponent,
+    data: { title: 'Covid-19 - Info' }
   },
   { path: '**', component: PaginaNonTrovataComponent }
 

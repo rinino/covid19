@@ -59,8 +59,8 @@ body {
 }
 
 .toolbar #twitter-logo {
-  height: 40px;
-  margin: 0 16px;
+  height: 35px;
+  margin: 0 13px;
 }
 
 .toolbar #twitter-logo:hover {
@@ -68,8 +68,8 @@ body {
 }
 
 .toolbar #linkedin-logo {
-  height: 40px;
-  margin: 0 16px;
+  height: 35px;
+  margin: 0 13px;
 }
 
 .toolbar #linkedin-logo:hover {
@@ -222,6 +222,7 @@ footer a {
   line-height: 18px;
   overflow: hidden;
   padding: 15px 60px;
+  margin-bottom: 30px;
 }
 
 .percentuale {
@@ -248,6 +249,7 @@ footer a {
 
 .infoP {
   padding: 5px 0 0 5px;
+  border-bottom: 1px solid #e1e1e1;
 }
 
 #asterisco {
@@ -255,6 +257,16 @@ footer a {
   font-style: oblique;
   font-size: 11px;
   margin: 10px 0px 0px 15px;
+}
+
+.datiSintesi {
+  font-size: 13px;
+  margin: 2px 2px 2px 2px;
+  font-weight: bold;
+}
+
+.imgMenu {
+  padding: 0px 10px 0px 5px;
 }
 
 .no-js #loader {
@@ -268,6 +280,32 @@ footer a {
   top: 0;
 }
 
+.icone-nav {
+  padding: 0 0 0 0;
+}
+
+
+#navId-p {
+  padding: 0px 5px 12px 3%;
+}
+
+.nav-link-p {
+  color: white !important;
+}
+
+.nav-link-p:hover{
+  color: rgb(177, 177, 177) !important;
+}
+
+.nav-link-p {
+  padding: 5px 5px 5px 0px;
+  color: white !important;
+}
+
+.nav-link-p:visited{
+  color:white !important;
+}
+
 .se-pre-con {
   position: fixed;
   left: 0px;
@@ -277,3 +315,6 @@ footer a {
   z-index: 9999;
   background: url(http://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
