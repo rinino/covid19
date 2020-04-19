@@ -20,7 +20,7 @@ import { ChartsModule } from 'ng2-charts';
 import { InfoComponent } from './components/info/info.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,13 +30,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     BasilicataComponent,
     InfoComponent,
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule,
   ],
   providers: [RecuperoJsonService, DatePipe],
   bootstrap: [AppComponent]
