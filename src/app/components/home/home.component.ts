@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit {
 
   // 3) grafico tot positivi/nuovi positivi - INIZIO
   lineChartDataTotPositiviNuovi: ChartDataSets[] = [
-    { data: this.variazioneTotalePositiviNazionale, label: 'Totale positivi' },
+    { data: this.variazioneTotalePositiviNazionale, label: 'Variazione positivi' },
     { data: this.nuoviPositiviNazionale, label: 'Nuovi positivi' },
 
   ];
