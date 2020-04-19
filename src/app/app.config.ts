@@ -20,6 +20,7 @@ export class AppConfig {
     return this.GITLAB_START_PATH + 'VitoFanelli/covid-19-italy/master/notebookIT/dimessiITA.json';
   }
 
+  public static get DATA_ITA_GG_MM_FORMAT(): string {return 'dd/MM'; }
   public static get DATA_ITA_NO_ORE_FORMAT(): string {return 'dd/MM/yyyy'; }
   public static get DATA_ITA_HH_MM_FORMAT(): string {return 'dd/MM/yyyy hh:MM'; }
 }

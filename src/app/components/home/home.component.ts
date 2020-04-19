@@ -184,7 +184,7 @@ export class HomeComponent implements OnInit {
           variazione_totale_positivi: any;
           nuovi_positivi: any;
         }) => {
-          this.labeldataNazionale.push(this.utilService.transformDate(andamento.data, AppConfig.DATA_ITA_NO_ORE_FORMAT));
+          this.labeldataNazionale.push(this.utilService.transformDate(andamento.data, AppConfig.DATA_ITA_GG_MM_FORMAT));
           this.tamponiNazionale.push(andamento.tamponi);
           this.totaleAttualmentePositiviNazionale.push(andamento.totale_casi);
           this.terapiaIntensivaNazionale.push(andamento.terapia_intensiva);
@@ -203,7 +203,7 @@ export class HomeComponent implements OnInit {
     this.recuperoJsonService.getDatiDecedutiTrend().subscribe(
       data => {
         for (const i of data.giorno) {
-          const dataFormattata = this.utilService.transformDate(i, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+          const dataFormattata = this.utilService.transformDate(i, AppConfig.DATA_ITA_GG_MM_FORMAT);
           this.labelData.push(dataFormattata);
         }
         for (const i of data.decessi) {
@@ -232,7 +232,7 @@ export class HomeComponent implements OnInit {
   initDatiAndamentoNazionaleLatest(): void {
     this.recuperoJsonService.getDatiAndamentoNazionaleLatest().subscribe(
       data => {
-        this.dataAggiornamentoLatest = this.utilService.transformDate(data[0].data, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.dataAggiornamentoLatest = this.utilService.transformDate(data[0].data, AppConfig.DATA_ITA_GG_MM_FORMAT);
         this.ricoveratiConSintomiLatest = this.utilService.formatNumber(data[0].ricoverati_con_sintomi);
         this.terapiaIntensivaLatest = this.utilService.formatNumber(data[0].terapia_intensiva);
         this.totaleOspedalizzatiLatest = this.utilService.formatNumber(data[0].totale_ospedalizzati);

@@ -115,7 +115,7 @@ export class BasilicataComponent implements OnInit {
           deceduti: any; dimessi_guariti: any;
         }) => {
           if (regione.codice_regione === 17) {
-            this.labeldata.push(this.utilsService.transformDate(regione.data, AppConfig.DATA_ITA_NO_ORE_FORMAT));
+            this.labeldata.push(this.utilsService.transformDate(regione.data, AppConfig.DATA_ITA_GG_MM_FORMAT));
             this.terapiaIntensiva.push(regione.terapia_intensiva);
             this.totaleCasi.push(regione.totale_casi);
             this.tamponi.push(regione.tamponi);
