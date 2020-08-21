@@ -21,6 +21,7 @@ import { InfoComponent } from './components/info/info.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReportIssComponent } from './components/report-iss/report-iss.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     BasilicataComponent,
     InfoComponent,
+    ReportIssComponent,
 
   ],
   imports: [

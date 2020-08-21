@@ -8,6 +8,7 @@ import {HomeComponent} from '../components/home/home.component';
 import {BasilicataComponent} from '../components/basilicata/basilicata.component';
 import {PaginaNonTrovataComponent} from '../components/pagina-non-trovata/pagina-non-trovata.component';
 import {InfoComponent} from '../components/info/info.component';
+import {ReportIssComponent} from '../components/report-iss/report-iss.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     data: { title: 'Covid-19 - Dati nazionali' }
+  },
+  {
+    path: 'reportIss',
+    component: ReportIssComponent,
+    data: { title: 'Covid-19 - Report ISS' }
   },
   {
     path: 'basilicata',
