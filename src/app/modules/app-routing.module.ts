@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 // Component
-import {HomeComponent} from '../components/home/home.component';
-import {BasilicataComponent} from '../components/basilicata/basilicata.component';
-import {PaginaNonTrovataComponent} from '../components/pagina-non-trovata/pagina-non-trovata.component';
-import {InfoComponent} from '../components/info/info.component';
-import {ReportIssComponent} from '../components/report-iss/report-iss.component';
+import { HomeComponent } from '../components/home/home.component';
+import { BasilicataComponent } from '../components/basilicata/basilicata.component';
+import { PaginaNonTrovataComponent } from '../components/pagina-non-trovata/pagina-non-trovata.component';
+import { InfoComponent } from '../components/info/info.component';
+import { ReportIssComponent } from '../components/report-iss/report-iss.component';
+import { RegioniComponent } from '../components/regioni/regioni.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'info',
     component: InfoComponent,
     data: { title: 'Covid-19 - Info' }
+  },
+  {
+    path: 'regioni',
+    component: RegioniComponent,
+    data: { title: 'Covid-19 - Regioni' }
   },
   { path: '**', component: PaginaNonTrovataComponent }
 

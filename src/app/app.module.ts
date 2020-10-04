@@ -4,6 +4,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DatePipe } from '@angular/common';
+import { TredigitsPipe } from './pipes/tredigits-pipe';
+
+// material
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 // Components
 import { AppComponent } from './app.component';
@@ -22,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportIssComponent } from './components/report-iss/report-iss.component';
+import { RegioniComponent } from './components/regioni/regioni.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +39,8 @@ import { ReportIssComponent } from './components/report-iss/report-iss.component
     BasilicataComponent,
     InfoComponent,
     ReportIssComponent,
+    RegioniComponent,
+    TredigitsPipe,
 
   ],
   imports: [
@@ -41,8 +50,13 @@ import { ReportIssComponent } from './components/report-iss/report-iss.component
     ChartsModule,
     BrowserAnimationsModule,
     NgbModule,
+    MatInputModule,
+    MatSelectModule
   ],
-  providers: [RecuperoJsonService, DatePipe],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    RecuperoJsonService, DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

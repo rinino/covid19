@@ -1,0 +1,52 @@
+<div class="content" role="main">
+
+    <h3>Grafici regionali</h3>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Seleziona una regione</mat-label>
+        <mat-select (selectionChange)="onChange($event)" [value]="selectedOption">
+            <mat-option *ngFor="let regione of selectRegioni" [value]="regione.value">
+                {{regione.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- <div class="container_grafici">
+      <label class="titolo_grafico">Andamento province di Potenza e matera</label>
+      <canvas baseChart id="potenza_matera" [datasets]="lineChartData" [labels]="lineChartLabels"
+        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div> -->
+
+    <div class="container_grafici_basilicata">
+
+        <p id="asterisco_basilicata">Dati riguardanti la regione {{regioneSelezionata}} </p>
+
+
+        <!-- <label class="titolo_grafico">Andamento regione Basilicata</label>
+      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [colors]="barChartColors" [legend]="barChartLegend" [chartType]="barChartType" [plugins]="barChartPlugins">
+      </canvas> -->
+
+        <div class="percentuale">
+            <h5>* Dati ultimo rilevamento (<span id="dataRilevamentoBox">{{dataAggiornamento}}</span>):</h5>
+            <p>Tamponi effettuati: <span id="totTamponi" class="bold">{{ultimoDatoTamponi | Tredigits }}</span></p>
+            <p>Casi totali: <span id="totCasi" class="bold">{{ultimoDatoTotaleCasi | Tredigits}}</span></p>
+            <p>Deceduti: <span id="totDecedut" class="bold">{{ultimoDatoDeceduti | Tredigits}}</span></p>
+            <p>Terapia intensiva: <span id="totTerapia" class="bold">{{ultimoDatoTerapia | Tredigits}}</span></p>
+            <p>Guariti/dimessi: <span id="totGuariti" class="bold">{{ultimoDatoDimessi | Tredigits}}</span></p>
+        </div>
+
+        <div class="totali">
+            <h5>* Percentuali:</h5>
+            <p>% positivi su tamponi effettuati: <span id="positiviTamponi"
+                    class="bold">{{percentualePositiviTamponi}}</span>
+            </p>
+            <p>% deceduti su casi totali: <span id="decedutiSuCasi"
+                    class="bold">{{percentualeDecedutiCasiTotali}}</span></p>
+            <p>% dimessi su casi totali: <span id="guaritiSuCasi" class="bold">{{percentualeGuaritiCasiTotali}}</span>
+            </p>
+        </div>
+    </div>
+</div>
