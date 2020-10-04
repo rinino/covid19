@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConfig } from '../../app.config';
 
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
+
 // Service
 import { RecuperoJsonService } from '../../services/recupero-json.service';
 import { UtilsService } from '../../services/utils.service';
@@ -42,6 +45,38 @@ export class RegioniComponent implements OnInit {
   public percentualePositiviTamponi: string;
 
 
+  // *** Grafico - INIZIO ***
+  barChartData: ChartDataSets[] = [
+    { data: this.terapiaIntensiva, label: 'Terapia intensiva' },
+    { data: this.totaleCasi, label: 'Totale casi' },
+    { data: this.tamponi, label: 'Tamponi' },
+    { data: this.deceduti, label: 'Deceduti' },
+    { data: this.dimessi, label: 'Dimessi / Guariti' },
+
+  ];
+  barChartLabels: Label[] = this.labeldata;
+
+  barChartOptions = {
+    responsive: true,
+  };
+
+  barChartColors: Color[] = [
+    {
+      borderColor: [
+        '#FF0000',
+        '#3e95cd'
+      ]
+    },
+  ];
+
+  barChartLegend = true;
+  barChartPlugins = [];
+  barChartType = 'bar';
+
+
+  // *** GRAFICO - fine ***
+
+
   ngOnInit(): void {
     this.initSelectRegioni();
     this.getNomeRegioneFromCodice();
@@ -75,13 +110,23 @@ export class RegioniComponent implements OnInit {
     ];
   }
 
-  onChange(regione: { value: number; }) {
+  onChange(regione: { value: number; viewValue:string }) {
     this.selectedOption = regione.value;
+    // this.resetDatiRegionali();
     this.getNomeRegioneFromCodice();
     this.datiRegionali(this.selectedOption);
 
   }
 
+  resetDatiRegionali(): void {
+    this.labeldata = [];
+    this.terapiaIntensiva = [];
+    this.totaleCasi = [];
+    this.tamponi = [];
+    this.deceduti = [];
+    this.dimessi = [];
+
+  }
 
   datiRegionali(idRegione: number): void {
     this.recuperoJsonService.getDatiRegioni().subscribe(

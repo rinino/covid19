@@ -10,6 +10,7 @@ import { PaginaNonTrovataComponent } from '../components/pagina-non-trovata/pagi
 import { InfoComponent } from '../components/info/info.component';
 import { ReportIssComponent } from '../components/report-iss/report-iss.component';
 import { RegioniComponent } from '../components/regioni/regioni.component';
+import { MappaComponent } from '../components/mappa/mappa.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path: 'regioni',
     component: RegioniComponent,
+    data: { title: 'Covid-19 - Regioni' }
+  },
+  {
+    path: 'mappa',
+    component: MappaComponent,
     data: { title: 'Covid-19 - Regioni' }
   },
   { path: '**', component: PaginaNonTrovataComponent }

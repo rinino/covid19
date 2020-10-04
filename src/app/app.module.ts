@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { TredigitsPipe } from './pipes/tredigits-pipe';
 
+import { GoogleChartsModule } from 'angular-google-charts';
+
+
 // material
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -29,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportIssComponent } from './components/report-iss/report-iss.component';
 import { RegioniComponent } from './components/regioni/regioni.component';
+import { MappaComponent } from './components/mappa/mappa.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,7 @@ import { RegioniComponent } from './components/regioni/regioni.component';
     ReportIssComponent,
     RegioniComponent,
     TredigitsPipe,
+    MappaComponent,
 
   ],
   imports: [
@@ -50,6 +55,7 @@ import { RegioniComponent } from './components/regioni/regioni.component';
     ChartsModule,
     BrowserAnimationsModule,
     NgbModule,
+    GoogleChartsModule,
     MatInputModule,
     MatSelectModule
   ],
