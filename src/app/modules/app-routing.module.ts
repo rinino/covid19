@@ -40,11 +40,11 @@ const routes: Routes = [
     component: RegioniComponent,
     data: { title: 'Covid-19 - Regioni' }
   },
-  {
-    path: 'mappa',
-    component: MappaComponent,
-    data: { title: 'Covid-19 - Regioni' }
-  },
+  // {
+  //   path: 'mappa',
+  //   component: MappaComponent,
+  //   data: { title: 'Covid-19 - Regioni' }
+  // },
   { path: '**', component: PaginaNonTrovataComponent }
 
 ];

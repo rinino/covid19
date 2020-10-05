@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var creaMappa: any;
+
+
+
 @Component({
   selector: 'app-mappa',
   templateUrl: './mappa.component.html',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MappaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    creaMappa()
   }
+
+
+
+
+
 
 }

@@ -11,6 +11,7 @@ export class AppConfig {
   public static get ANDAMENTO_NAZIONALE(): string { return 'dpc-covid19-ita-andamento-nazionale.json'; }
   public static get ANDAMENTO_NAZIONALE_LATEST(): string { return 'dpc-covid19-ita-andamento-nazionale-latest.json'; }
   public static get DATI_REGIONI(): string { return 'dpc-covid19-ita-regioni.json'; }
+  public static get DATI_REGIONI_LATEST(): string {return 'dpc-covid19-ita-regioni-latest.json'}
   public static get DATI_PROVINCE(): string { return 'dpc-covid19-ita-province.json'; }
 
   public static get ANDAMENTO_DECEDUTI_COMPLETO(): string {

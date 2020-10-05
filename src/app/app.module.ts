@@ -34,6 +34,8 @@ import { ReportIssComponent } from './components/report-iss/report-iss.component
 import { RegioniComponent } from './components/regioni/regioni.component';
 import { MappaComponent } from './components/mappa/mappa.component';
 
+import * as jQuery from "jquery";
+
 @NgModule({
   declarations: [
     AppComponent,
