@@ -2,14 +2,15 @@
   <h3>Info</h3>
   <div class="noteAlt">
     <p class="infoP">In questa pagina si trova un estratto dei report periodici dell'ISS</p>
-    <p>I report sono disponibili al seguente collegamento: <a href="https://www.epicentro.iss.it/" target="_blank">Epicentro
-        ISS</a> nel link "Report esteso" (in formato PDF)
+    <p>I report sono disponibili al seguente collegamento:
+    <a href="{{pathFile}}" target="_blank">
+       Epicentro ISS - "Report esteso"</a> (in formato PDF)
     </p>
   </div>
 
   <h3>Dati per classi di eta'</h3>
-  <h4>Aggiornamento dati: 06/10/2020</h4>
-  <h5>Pubblicato il 10/10/2020</h5>
+  <h4>Aggiornamento dati: {{dataAggiornamento}}</h4>
+  <h5>Pubblicato il {{dataPubblicazione}}</h5>
   <div class="container_grafici">
     <div class="table-responsive">
       <table class="table">
@@ -24,93 +25,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>0-9</td>
-            <td>6924 (+1085)</td>
-            <td>2,1</td>
-            <td>4 (+0)</td>
-            <td>0,0</td>
-            <td>0,1</td>
-          </tr>
-          <tr>
-            <td>10-19</td>
-            <td>13.209 (+1.837)</td>
-            <td>4,0</td>
-            <td>0 (+0)</td>
-            <td>0,0</td>
-            <td>0,0</td>
-          </tr>
-          <tr>
-            <td>20-29</td>
-            <td>31.734 (+1.873)</td>
-            <td>9,7</td>
-            <td>15(+0)</td>
-            <td>0,0</td>
-            <td>0,0</td>
-          </tr>
-          <tr>
-            <td>30-39</td>
-            <td>32.384 (+2.362)</td>
-            <td>9,9</td>
-            <td>70 (+0)</td>
-            <td>0,2</td>
-            <td>0,2</td>
-          </tr>
-          <tr>
-            <td>40-49</td>
-            <td>44.161 (+2.503)</td>
-            <td>13,5</td>
-            <td>319 (+5)</td>
-            <td>0,9</td>
-            <td>0,7</td>
-          </tr>
-          <tr>
-            <td>50-59</td>
-            <td>55.978 (+2.709)</td>
-            <td>17,1</td>
-            <td>1.263 (+8)</td>
-            <td>3,5</td>
-            <td>2,3</td>
-          </tr>
-          <tr>
-            <td>60-69</td>
-            <td>39.429 (+1.619)</td>
-            <td>12,0</td>
-            <td>3.613 (+14)</td>
-            <td>10,0</td>
-            <td>9,2</td>
-          </tr>
-          <tr>
-            <td>70-79</td>
-            <td>38.786 (+1.603)</td>
-            <td>11,8</td>
-            <td>9.409 (+37)</td>
-            <td>26,1</td>
-            <td>24,3</td>
-          </tr>
-          <tr>
-            <td>80-89</td>
-            <td>44.593 (+713)</td>
-            <td>13,6</td>
-            <td>14.736 (+50)</td>
-            <td>40,9</td>
-            <td>33,0</td>
-          </tr>
-          <tr>
-            <td>>= 90</td>
-            <td>20.156 (+263)</td>
-            <td>6,2</td>
-            <td>6.621 (+41)</td>
-            <td>18,4</td>
-            <td>32,8</td>
-          </tr>
-          <tr>
-            <td>Non nota</td>
-            <td>22 (-1)</td>
-            <td>0,0</td>
-            <td>1 (+0)</td>
-            <td>0,0</td>
-            <td>4,5</td>
+          <tr *ngFor="let rapporto of rapporti">
+            <td>{{rapporto.classeEta}}</td>
+            <td>{{rapporto.num_casi | Tredigits}}</td>
+            <td>{{rapporto.perc_casi}}</td>
+            <td>{{rapporto.num_deceduti | Tredigits }}</td>
+            <td>{{rapporto.perc_deceduti}}</td>
+            <td>{{rapporto.letalita}}</td>
           </tr>
         </tbody>
       </table>

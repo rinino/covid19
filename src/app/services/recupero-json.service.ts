@@ -13,6 +13,7 @@ export class RecuperoJsonService {
   private baseUrlAndamentoDeceduti: string;
   private baseUrlAndamentoDimessi: string;
   private baseUrlRegioniLatest: string;
+  private jsonReportUrl: string;
 
   constructor(private httpClient: HttpClient) {
     this.baseUrlAndamentoNazionale = AppConfig.GITLAB_ENDPOINT + AppConfig.ANDAMENTO_NAZIONALE;
@@ -22,6 +23,7 @@ export class RecuperoJsonService {
     this.baseUrlAndamentoDeceduti = AppConfig.ANDAMENTO_DECEDUTI_COMPLETO;
     this.baseUrlAndamentoDimessi = AppConfig.ANDAMENTO_DIMESI_COMPLETO;
     this.baseUrlRegioniLatest = AppConfig.DATI_REGIONI_LATEST;
+    this.jsonReportUrl = 'assets/json/dati_rapporto.json';
 
   }
 
@@ -58,6 +60,11 @@ export class RecuperoJsonService {
 
   getDatiRegioniLatest(): Observable<any> {
     return this.httpClient.get<any>(this.baseUrlRegioniLatest);
+  }
+
+
+  getDatiJsonReport(): Observable<any> {
+    return this.httpClient.get<any>(this.jsonReportUrl);
   }
 
 }
