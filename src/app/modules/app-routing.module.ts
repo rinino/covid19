@@ -11,6 +11,7 @@ import { InfoComponent } from '../components/info/info.component';
 import { ReportIssComponent } from '../components/report-iss/report-iss.component';
 import { RegioniComponent } from '../components/regioni/regioni.component';
 import { MappaComponent } from '../components/mappa/mappa.component';
+import { AdminComponent } from '../components/admin/admin.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,11 @@ const routes: Routes = [
     path: 'regioni',
     component: RegioniComponent,
     data: { title: 'Covid-19 - Regioni' }
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    data: { title: 'Covid-19 - Amministrazione' }
   },
   // {
   //   path: 'mappa',

@@ -36,6 +36,8 @@ import { MappaComponent } from './components/mappa/mappa.component';
 
 import * as jQuery from "jquery";
 import { AdminComponent } from './components/admin/admin.component';
+import {MatIconModule} from '@angular/material/icon';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -61,11 +63,13 @@ import { AdminComponent } from './components/admin/admin.component';
     NgbModule,
     GoogleChartsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-    RecuperoJsonService, DatePipe
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,  useValue: { appearance: 'fill' } },
+    RecuperoJsonService, DatePipe, MatIconModule, FormBuilder
   ],
   bootstrap: [AppComponent]
 })

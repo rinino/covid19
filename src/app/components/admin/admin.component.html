@@ -1,1 +1,32 @@
-<p>admin works!</p>
+<div class="content" role="main">
+
+    <div class="example-container">
+        <h3>Benvenuto!</h3>
+        <h5>Inserisci username e password</h5>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" required>
+                    <button mat-button matSuffix mat-icon-button>
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div id="pulsantieraLogin">
+                <button type="submit" class="btn btn-primary" >Login</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()" id="pulsanteClear">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
