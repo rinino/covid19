@@ -35,6 +35,7 @@ import { RegioniComponent } from './components/regioni/regioni.component';
 import { MappaComponent } from './components/mappa/mappa.component';
 
 import * as jQuery from "jquery";
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import * as jQuery from "jquery";
     RegioniComponent,
     TredigitsPipe,
     MappaComponent,
+    AdminComponent,
 
   ],
   imports: [

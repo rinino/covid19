@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RecuperoJsonService } from '../../services/recupero-json.service';
 
-import { DatiRapportoIssDto } from '../../models/dati_rapporto_iss_dto';
+import { DatiRapportoIssDto } from '../../models/dati-rapporto-iss-dto';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppConfig } from 'src/app/app.config';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
@@ -48,7 +48,7 @@ export class ReportIssComponent implements OnInit {
     );
   }
 
-  getDatiReport(idRapporto): void {
+  getDatiReport(idRapporto: string | number): void {
     var rapportoIssDTO: DatiRapportoIssDto;
     var idRapportoInt: number = +idRapporto;
     this.recuperoJsonService.getDatiRapporto(idRapportoInt).subscribe(
