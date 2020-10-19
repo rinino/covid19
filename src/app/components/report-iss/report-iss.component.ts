@@ -5,6 +5,7 @@ import { RecuperoJsonService } from '../../services/recupero-json.service';
 import { DatiRapportoIssDto } from '../../models/dati_rapporto_iss_dto';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppConfig } from 'src/app/app.config';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-report-iss',
@@ -21,27 +22,43 @@ export class ReportIssComponent implements OnInit {
   public dataAggiornamento: string;
   public dataPubblicazione: string;
   public pathFile: string;
+  public idRapporto: string;
 
   public rapporti: DatiRapportoIssDto[] = [];
 
   ngOnInit(): void {
-    this.getDatiReport();
+    this.initReport();
+   
   }
 
   getUrlToPdf(): string {
     return this.pathFile;
   }
 
-  getDatiReport(): void {
-    var rapportoIssDTO: DatiRapportoIssDto;
-    this.recuperoJsonService.getDatiJsonReport().subscribe(
+  initReport(): void {
+    this.recuperoJsonService.getRapportAttivo().subscribe(
       data => {
-        this.dataAggiornamento = this.utilsService.transformDate(data[2].data[0].dt_aggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        this.dataPubblicazione = this.utilsService.transformDate(data[2].data[0].dt_pubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        this.pathFile = data[2].data[0].path_file;
+        this.dataAggiornamento = this.utilsService.transformDate(data.rapporti[0].dt_aggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.dataPubblicazione = this.utilsService.transformDate(data.rapporti[0].dt_pubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.pathFile = data.rapporti[0].path_file;
+        this.idRapporto = data.rapporti[0].id_rapporto;
+        this.getDatiReport(data.rapporti[0].id_rapporto);
+      }
 
-        data[2].data.forEach((rapporto: {
-          letalita: string; classeEta: string;
+    );
+  }
+
+  getDatiReport(idRapporto): void {
+    var rapportoIssDTO: DatiRapportoIssDto;
+    var idRapportoInt: number = +idRapporto;
+    this.recuperoJsonService.getDatiRapporto(idRapportoInt).subscribe(
+      data => {
+        // this.dataAggiornamento = this.utilsService.transformDate(data[2].data[0].dt_aggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        // this.dataPubblicazione = this.utilsService.transformDate(data[2].data[0].dt_pubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        // this.pathFile = data[2].data[0].path_file;
+
+        data.dati_rapporti.forEach((rapporto: {
+          letalita: string; classe_eta: string;
           num_casi: string; num_deceduti: string;
           perc_casi: string,
           perc_deceduti: string;
@@ -53,7 +70,7 @@ export class ReportIssComponent implements OnInit {
           rapportoIssDTO.num_deceduti = rapporto.num_deceduti;
           rapportoIssDTO.perc_casi = rapporto.perc_casi;
           rapportoIssDTO.perc_deceduti = rapporto.perc_deceduti;
-          rapportoIssDTO.classeEta = rapporto.classeEta;
+          rapportoIssDTO.classeEta = rapporto.classe_eta;
           rapportoIssDTO.fascia_calcolo = rapporto.fascia_calcolo;
           this.rapporti.push(rapportoIssDTO);
         });

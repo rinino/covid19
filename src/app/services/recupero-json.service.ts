@@ -14,6 +14,8 @@ export class RecuperoJsonService {
   private baseUrlAndamentoDimessi: string;
   private baseUrlRegioniLatest: string;
   private jsonReportUrl: string;
+  private jsonRapportoAttivo: string;
+  private jsonDatiRapporto: string;
 
   constructor(private httpClient: HttpClient) {
     this.baseUrlAndamentoNazionale = AppConfig.GITLAB_ENDPOINT + AppConfig.ANDAMENTO_NAZIONALE;
@@ -24,6 +26,8 @@ export class RecuperoJsonService {
     this.baseUrlAndamentoDimessi = AppConfig.ANDAMENTO_DIMESI_COMPLETO;
     this.baseUrlRegioniLatest = AppConfig.DATI_REGIONI_LATEST;
     this.jsonReportUrl = 'assets/json/dati_rapporto.json';
+    this.jsonRapportoAttivo = AppConfig.API_RAPPORTI_START_PATH + 'rapporto/getRapportoAttivo.php';
+    this.jsonDatiRapporto = AppConfig.API_RAPPORTI_START_PATH + 'datiRapporto/getDatiRapporto.php';
 
   }
 
@@ -65,6 +69,22 @@ export class RecuperoJsonService {
 
   getDatiJsonReport(): Observable<any> {
     return this.httpClient.get<any>(this.jsonReportUrl);
+  }
+
+
+  getAllRapporti(): Observable<any> {
+    return this.httpClient.get<any>('https://api.andamentocovid19.it/api/rapporto/read.php');
+
+  }
+
+  getRapportAttivo(): Observable<any> {
+    return this.httpClient.get<any>(this.jsonRapportoAttivo);
+
+  }
+
+  getDatiRapporto(_idRapporto): Observable<any> {
+    return this.httpClient.get<any>(this.jsonDatiRapporto+"?idRapporto="+_idRapporto);
+
   }
 
 }
