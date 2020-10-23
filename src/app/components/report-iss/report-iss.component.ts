@@ -23,16 +23,22 @@ export class ReportIssComponent implements OnInit {
   public dataPubblicazione: string;
   public pathFile: string;
   public idRapporto: string;
+  public pathFileAnalisiDecessi: string;
 
   public rapporti: DatiRapportoIssDto[] = [];
 
   ngOnInit(): void {
     this.initReport();
+    this.setPathAnalisiDecessi();
    
   }
 
   getUrlToPdf(): string {
     return this.pathFile;
+  }
+
+  setPathAnalisiDecessi(): void {
+    this.pathFileAnalisiDecessi = 'https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_4_ottobre.pdf';
   }
 
   initReport(): void {

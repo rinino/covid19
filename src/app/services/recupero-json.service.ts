@@ -82,7 +82,7 @@ export class RecuperoJsonService {
 
   }
 
-  getDatiRapporto(_idRapporto): Observable<any> {
+  getDatiRapporto(_idRapporto: string | number): Observable<any> {
     return this.httpClient.get<any>(this.jsonDatiRapporto+"?idRapporto="+_idRapporto);
 
   }
