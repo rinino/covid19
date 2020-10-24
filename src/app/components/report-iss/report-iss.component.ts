@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { RecuperoJsonService } from '../../services/recupero-json.service';
 
@@ -18,6 +18,8 @@ export class ReportIssComponent implements OnInit {
     private recuperoJsonService: RecuperoJsonService,
     private utilsService: UtilsService
   ) { }
+
+  @HostListener('window:scroll')
 
   public dataAggiornamento: string;
   public dataPubblicazione: string;
