@@ -5,7 +5,6 @@ import { RecuperoJsonService } from '../../services/recupero-json.service';
 import { DatiRapportoIssDto } from '../../models/dati-rapporto-iss-dto';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppConfig } from 'src/app/app.config';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-report-iss',
@@ -18,8 +17,6 @@ export class ReportIssComponent implements OnInit {
     private recuperoJsonService: RecuperoJsonService,
     private utilsService: UtilsService
   ) { }
-
-  @HostListener('window:scroll')
 
   public dataAggiornamento: string;
   public dataPubblicazione: string;
@@ -46,11 +43,11 @@ export class ReportIssComponent implements OnInit {
   initReport(): void {
     this.recuperoJsonService.getRapportAttivo().subscribe(
       data => {
-        this.dataAggiornamento = this.utilsService.transformDate(data.rapporti[0].dt_aggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        this.dataPubblicazione = this.utilsService.transformDate(data.rapporti[0].dt_pubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        this.pathFile = data.rapporti[0].path_file;
-        this.idRapporto = data.rapporti[0].id_rapporto;
-        this.getDatiReport(data.rapporti[0].id_rapporto);
+        this.dataAggiornamento = this.utilsService.transformDate(data.dtAggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.dataPubblicazione = this.utilsService.transformDate(data.dtPubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.pathFile = data.pathFile;
+        this.idRapporto = data.idRapporto;
+        this.getDatiReport(data.idRapporto);
       }
 
     );
@@ -61,25 +58,22 @@ export class ReportIssComponent implements OnInit {
     var idRapportoInt: number = +idRapporto;
     this.recuperoJsonService.getDatiRapporto(idRapportoInt).subscribe(
       data => {
-        // this.dataAggiornamento = this.utilsService.transformDate(data[2].data[0].dt_aggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        // this.dataPubblicazione = this.utilsService.transformDate(data[2].data[0].dt_pubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        // this.pathFile = data[2].data[0].path_file;
 
-        data.dati_rapporti.forEach((rapporto: {
-          letalita: string; classe_eta: string;
-          num_casi: string; num_deceduti: string;
-          perc_casi: string,
-          perc_deceduti: string;
-          fascia_calcolo: string
+        data.forEach((rapporto: {
+          letalita: string; classeEta: any;
+          numCasi: string; numDeceduti: string;
+          percCasi: string,
+          percDeceduti: string;
+          fasciaCalcolo: string
         }) => {
           rapportoIssDTO = new DatiRapportoIssDto();
           rapportoIssDTO.letalita = rapporto.letalita;
-          rapportoIssDTO.num_casi = rapporto.num_casi;
-          rapportoIssDTO.num_deceduti = rapporto.num_deceduti;
-          rapportoIssDTO.perc_casi = rapporto.perc_casi;
-          rapportoIssDTO.perc_deceduti = rapporto.perc_deceduti;
-          rapportoIssDTO.classeEta = rapporto.classe_eta;
-          rapportoIssDTO.fascia_calcolo = rapporto.fascia_calcolo;
+          rapportoIssDTO.num_casi = rapporto.numCasi;
+          rapportoIssDTO.num_deceduti = rapporto.numDeceduti;
+          rapportoIssDTO.perc_casi = rapporto.percCasi;
+          rapportoIssDTO.perc_deceduti = rapporto.percDeceduti;
+          rapportoIssDTO.classeEta = rapporto.classeEta.valore;
+          rapportoIssDTO.fascia_calcolo = rapporto.fasciaCalcolo;
           this.rapporti.push(rapportoIssDTO);
         });
         this.rapporti.sort((a, b) => a.classeEta < b.classeEta ? -1 : a.classeEta > b.classeEta ? 1 : 0);

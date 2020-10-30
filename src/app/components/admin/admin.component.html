@@ -24,9 +24,17 @@
                 </mat-form-field>
             </div>
             <div id="pulsantieraLogin">
-                <button type="submit" class="btn btn-primary" >Login</button>
+                <button type="submit" class="btn btn-primary">Login</button>
                 <button class="btn btn-secondary" type="reset" (click)="onReset()" id="pulsanteClear">Cancel</button>
             </div>
         </form>
     </div>
+
+
+    <div *ngIf="logged">
+        Bentornato, {{userDTO.nome}}.
+    </div>
+
+
+
 </div>

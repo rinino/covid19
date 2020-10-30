@@ -1,7 +1,7 @@
 import { AppConfig } from '../app.config';
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -16,6 +16,7 @@ export class RecuperoJsonService {
   private jsonReportUrl: string;
   private jsonRapportoAttivo: string;
   private jsonDatiRapporto: string;
+  private jsonUtenteByUserAndPass: string;
 
   constructor(private httpClient: HttpClient) {
     this.baseUrlAndamentoNazionale = AppConfig.GITLAB_ENDPOINT + AppConfig.ANDAMENTO_NAZIONALE;
@@ -26,8 +27,9 @@ export class RecuperoJsonService {
     this.baseUrlAndamentoDimessi = AppConfig.ANDAMENTO_DIMESI_COMPLETO;
     this.baseUrlRegioniLatest = AppConfig.DATI_REGIONI_LATEST;
     this.jsonReportUrl = 'assets/json/dati_rapporto.json';
-    this.jsonRapportoAttivo = AppConfig.API_RAPPORTI_START_PATH + 'rapporto/getRapportoAttivo.php';
-    this.jsonDatiRapporto = AppConfig.API_RAPPORTI_START_PATH + 'datiRapporto/getDatiRapporto.php';
+    this.jsonRapportoAttivo = AppConfig.API_START_PATH + 'rapporti/getReportAttivo';
+    this.jsonDatiRapporto = AppConfig.API_START_PATH + 'rapporti/getDatiRapporto';
+    this.jsonUtenteByUserAndPass = AppConfig.API_START_PATH + 'user/getUserByUsernameAndPass.php';
 
   }
 
@@ -67,24 +69,37 @@ export class RecuperoJsonService {
   }
 
 
-  getDatiJsonReport(): Observable<any> {
-    return this.httpClient.get<any>(this.jsonReportUrl);
-  }
-
-
-  getAllRapporti(): Observable<any> {
-    return this.httpClient.get<any>('https://api.andamentocovid19.it/api/rapporto/read.php');
-
-  }
-
   getRapportAttivo(): Observable<any> {
     return this.httpClient.get<any>(this.jsonRapportoAttivo);
 
   }
 
   getDatiRapporto(_idRapporto: string | number): Observable<any> {
-    return this.httpClient.get<any>(this.jsonDatiRapporto+"?idRapporto="+_idRapporto);
+    return this.httpClient.get<any>(this.jsonDatiRapporto + "?idRapporto=" + _idRapporto);
 
+  }
+
+
+  // utente
+
+  public getDatiUtente(username: string, password: string): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json', 
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OTIONS'
+        
+        })
+    };
+
+    return this.httpClient.post<any>(this.jsonUtenteByUserAndPass,
+      {
+        'username': username,
+        'pass': password
+      },
+      httpOptions
+    );
   }
 
 }
