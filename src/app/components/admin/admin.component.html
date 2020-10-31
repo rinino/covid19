@@ -1,6 +1,6 @@
 <div class="content" role="main">
 
-    <div class="example-container">
+    <div class="example-container" *ngIf="logged == false">
         <h3>Benvenuto!</h3>
         <h5>Inserisci username e password</h5>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -32,7 +32,8 @@
 
 
     <div *ngIf="logged">
-        Bentornato, {{userDTO.nome}}.
+        <h3>Bentornato, {{userDTO.nome}}.</h3>
+        <p>il tuo ultimo login e' stato {{userDTO.dt_ultimo_login}}</p>
     </div>
 
 

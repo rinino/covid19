@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
   submitted = false;
-  userDTO: UserDto;
+  userDTO: UserDto = new UserDto();
   logged: boolean = false;
 
   constructor(private formBuilder: FormBuilder, 
@@ -47,8 +47,11 @@ export class AdminComponent implements OnInit {
     this.recuperoJsonService.getDatiUtente(username, pass).subscribe(
       data => {
         this.userDTO.nome = data.nome;
-        this.userDTO.dt_ultimo_login = this.utilsService.transformDate(data.dt_ultimo_login, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.userDTO.dt_ultimo_login = this.utilsService.transformDate(data.dtUltimoLogin, AppConfig.DATA_ITA_HH_MM_FORMAT);
         this.logged = true;
+      },
+      error => {
+        console.log('errore' + JSON.stringify(error.message));
       }
     );
   }

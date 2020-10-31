@@ -1,7 +1,7 @@
 import { AppConfig } from '../app.config';
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class RecuperoJsonService {
     this.jsonReportUrl = 'assets/json/dati_rapporto.json';
     this.jsonRapportoAttivo = AppConfig.API_START_PATH + 'rapporti/getReportAttivo';
     this.jsonDatiRapporto = AppConfig.API_START_PATH + 'rapporti/getDatiRapporto';
-    this.jsonUtenteByUserAndPass = AppConfig.API_START_PATH + 'user/getUserByUsernameAndPass.php';
+    this.jsonUtenteByUserAndPass = AppConfig.API_START_PATH + 'user/findUser';
 
   }
 
@@ -84,22 +84,25 @@ export class RecuperoJsonService {
 
   public getDatiUtente(username: string, password: string): Observable<any> {
 
+    let postData = new FormData();
+    postData.append('username', username);
+    postData.append('password', password);
+
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, OTIONS'
-        
-        })
+
+      })
     };
 
     return this.httpClient.post<any>(this.jsonUtenteByUserAndPass,
-      {
-        'username': username,
-        'pass': password
-      },
-      httpOptions
+      postData
     );
+
+
+
   }
 
 }
