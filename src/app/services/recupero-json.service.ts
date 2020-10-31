@@ -84,22 +84,25 @@ export class RecuperoJsonService {
 
   public getDatiUtente(username: string, password: string): Observable<any> {
 
-    let postData = new FormData();
-    postData.append('username', username);
-    postData.append('password', password);
+    // let postData = new FormData();
+    // postData.append('username', username);
+    // postData.append('password', password);
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OTIONS'
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Methods': 'GET, POST, OTIONS'
 
-      })
-    };
+    //   })
+    // };
 
-    return this.httpClient.post<any>(this.jsonUtenteByUserAndPass,
-      postData
-    );
+    // return this.httpClient.post<any>(this.jsonUtenteByUserAndPass,
+    //   postData
+    // );
+
+    return;
+
 
 
 
