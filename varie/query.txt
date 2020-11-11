@@ -1,40 +1,35 @@
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 1, '8.863, '2,5', '4', '0,0', '0,10', '2');
+	VALUES (NULL, 1, '29237', '3,5', '4', '0,0', '0,0', '5');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 2, '17.040', '4,8', '0', '0,0', '0,10', '2');
-	
+	VALUES (NULL, 2, '73182', '6', '0', '0,0', '0,0', '5');
+
+INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
+	VALUES (NULL, 3, '104884', '12,4', '13', '0,0', '0,0', '5');
 	
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 3, '36.454', '10,2', '15', '0,0', '0,2', '2');
-	
-	
-INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 4, '36.701', '10,2', '70', '0,2', '0,2', '2');
+	VALUES (NULL, 4, '101273', '12,0', '81', '0,2', '0,1', '5');
 	
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 5, '48.908', '13,6', '320', '0,9', '0,7', '2');
-	
-	
-INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 6, '60.958', '17,0', '1.270', '3,5', '2,1', '2');
-	
+	VALUES (NULL, 5, '128375', '15,2', '350', '0,9', '0,3', '5');
 	
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 7, '42.289', '11,8', '3.629', '10,0', '8,6', '2');
-	
-	
-INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 8, '40.639', '11,3', '9.454', '26,1', '23,3', '2');
+	VALUES (NULL, 6, '146908', '17,4', '1388', '3,5', '0,9', '5');
 	
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 9, '46.005', '12,8', '14.808', '40,9', '32,2', '2');
+	VALUES (NULL, 7, '90879', '10,8', '3981', '9,9', '4,4', '5');
 	
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 10, '20.619', '5,8', '6.662', '18,4', '32,3', '2');
+	VALUES (NULL, 8, '71995', '8,5', '10323', '25,7', '14,3', '5');
 	
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
-	VALUES (NULL, 11, '23', '0,0', '1', '0,0', '4,3', '2');
+	VALUES (NULL, 9, '69340', '8,2', '16533', '41,1, '23,8', '5');
+	
+INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
+	VALUES (NULL, 10, '28400', '3,3', '7535', '18,7', '26,5', '5');
+	
+INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`) 
+	VALUES (NULL, 11, '106', '0,0', '4', '0,0', '3,8', '5');
 	
 	
 	
