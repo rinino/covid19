@@ -37,7 +37,7 @@ export class ReportIssComponent implements OnInit {
   }
 
   setPathAnalisiDecessi(): void {
-    this.pathFileAnalisiDecessi = 'https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_28_ottobre.pdff';
+    this.pathFileAnalisiDecessi = 'https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_1_marzo_2021.pdf';
   }
 
   initReport(): void {
