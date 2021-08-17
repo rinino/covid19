@@ -27,6 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.31",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
+    "@syncfusion/ej2-angular-navigations": "^19.2.56",
     "angular-google-charts": "^1.1.6",
     "angular2-chartjs": "^0.5.1",
     "bootstrap": "^4.5.2",

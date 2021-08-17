@@ -39,6 +39,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import {MatIconModule} from '@angular/material/icon';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
+import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,10 +54,12 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
     TredigitsPipe,
     MappaComponent,
     AdminComponent,
+    
 
   ],
   imports: [
     BrowserModule,
+    AccordionModule,
     HttpClientModule,
     AppRoutingModule,
     ChartsModule,
