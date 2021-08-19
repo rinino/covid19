@@ -51,20 +51,28 @@ export class BasilicataComponent implements OnInit {
 
   barChartOptions = {
     responsive: true,
+    maintainAspectRatio: true,
   };
 
-  barChartColors: Color[] = [
-    {
-      borderColor: [
-        '#FF0000',
-        '#3e95cd'
-      ]
-    },
-  ];
 
   barChartLegend = true;
   barChartPlugins = [];
-  barChartType = 'bar';
+  barChartType = 'line';
+
+  lineChartColors2: Color[] = [
+    {
+      borderColor: [
+        '#FF0000',
+        '#3e95cd',
+        '#ff0000',
+        '#cdbb00',
+        '#cdbbe8'
+      ],
+      backgroundColor: [
+        '#FF0000'
+      ],
+    },
+  ];
 
   // dati province pz mt
 

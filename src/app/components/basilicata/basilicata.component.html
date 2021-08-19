@@ -4,16 +4,29 @@
 
   <div class="container_grafici">
     <label class="titolo_grafico">Andamento province di Potenza e matera</label>
-    <canvas baseChart id="potenza_matera" [datasets]="lineChartData" [labels]="lineChartLabels"
-      [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
-      [plugins]="lineChartPlugins">
+    <canvas baseChart id="potenza_matera" 
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions" 
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"
+      >
     </canvas>
   </div>
 
   <div class="container_grafici_basilicata">
     <label class="titolo_grafico">Andamento regione Basilicata</label>
-    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-      [colors]="barChartColors" [legend]="barChartLegend" [chartType]="barChartType" [plugins]="barChartPlugins">
+    <canvas baseChart 
+        [datasets]="barChartData" 
+        [labels]="barChartLabels" 
+        [options]="barChartOptions"
+        [legend]="barChartLegend" 
+        [chartType]="barChartType" 
+        [plugins]="barChartPlugins"
+        [colors]="lineChartColors2"
+      >
     </canvas>
 
     <div class="percentuale">
