@@ -31,11 +31,11 @@
 
     <div class="percentuale">
       <h5>* Dati ultimo rilevamento (<span id="dataRilevamentoBox">{{dataAggiornamento}}</span>):</h5>
-      <p>Tamponi effettuati: <span id="totTamponi" class="bold">{{ultimoDatoTamponi}}</span></p>
-      <p>Casi totali: <span id="totCasi" class="bold">{{ultimoDatoTotaleCasi}}</span></p>
-      <p>Deceduti: <span id="totDecedut" class="bold">{{ultimoDatoDeceduti}}</span></p>
-      <p>Terapia intensiva: <span id="totTerapia" class="bold">{{ultimoDatoTerapia}}</span></p>
-      <p>Guariti/dimessi: <span id="totGuariti" class="bold">{{ultimoDatoDimessi}}</span></p>
+      <p>Tamponi effettuati: <span id="totTamponi" class="bold">{{ultimoDatoTamponi | Tredigits}}</span></p>
+      <p>Casi totali: <span id="totCasi" class="bold">{{ultimoDatoTotaleCasi | Tredigits}}</span></p>
+      <p>Deceduti: <span id="totDecedut" class="bold">{{ultimoDatoDeceduti | Tredigits}}</span></p>
+      <p>Terapia intensiva: <span id="totTerapia" class="bold">{{ultimoDatoTerapia | Tredigits}}</span></p>
+      <p>Guariti/dimessi: <span id="totGuariti" class="bold">{{ultimoDatoDimessi | Tredigits}}</span></p>
     </div>
 
     <div class="totali">
