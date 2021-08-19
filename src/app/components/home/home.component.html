@@ -11,13 +11,9 @@
 <div class="content" role="main">
 
   <div class="content" role="main">
-    <h3>Andamento Covid 19</h3>
-    <div class="noteAlt">
-      <p class="infoP">Lo scopo di queste pagine e' mostrare grafici sull'andamento della pandemia di COVID 19</p>
-      <p>
-        L'unica regione trattata e' la Basilicata
-      </p>
-    </div>
+    <h1 class="titoloHome">Andamento Covid 19</h1>
+    <img src="assets/images/corona19.jpg" alt="Coronavirus - Covid 19">
+  </div>
 
 
   <div class="container">
@@ -77,12 +73,4 @@
     </canvas>
   </div>
 
-  <div class="container_grafici">
-    <label class="titolo_grafico">Andamento deceduti</label>
-    <canvas baseChart id="deceduti" [datasets]="lineChartDataTrendDecessi" [labels]="lineChartLabelsTrendDecessi"
-      [options]="lineChartOptionsTrendDecessi" [colors]="lineChartColorsTrendDecessi"
-      [legend]="lineChartLegendTrendDecessi" [chartType]="lineChartTypeTrendDecessi"
-      [plugins]="lineChartPluginsTrendDecessi">
-    </canvas>
-  </div>
 </div>

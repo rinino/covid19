@@ -221,12 +221,6 @@ footer a {
   background-color: #fafafa;
 }
 
-.container_grafici_basilicata {
-  width: 100%;
-  height: 100%;
-  padding: 5% 5px 5px 5px;
-  background-color: #000000;
-}
 
 #grafici {
   width: 100%;
@@ -266,11 +260,6 @@ footer a {
 
 .bold {
   font-weight: bold;
-}
-
-.infoP {
-  padding: 5px 0 0 5px;
-  border-bottom: 1px solid #e1e1e1;
 }
 
 #asterisco {

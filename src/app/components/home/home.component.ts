@@ -137,37 +137,37 @@ export class HomeComponent implements OnInit {
   // 3) grafico tamponi/attualmente positivi - FINE
 
   // 4) grafico trend deceduti/dimessi - INIZIO
-  lineChartDataTrendDecessi: ChartDataSets[] = [
-    { data: this.numeroDecessi, label: 'Deceduti' },
-    { data: this.numeroDimessi, label: 'Dimessi' },
-  ];
-  lineChartLabelsTrendDecessi: Label[] = this.labelData;
+  // lineChartDataTrendDecessi: ChartDataSets[] = [
+  //   { data: this.numeroDecessi, label: 'Deceduti' },
+  //   { data: this.numeroDimessi, label: 'Dimessi' },
+  // ];
+  // lineChartLabelsTrendDecessi: Label[] = this.labelData;
 
-  lineChartOptionsTrendDecessi = {
-    responsive: true,
-  };
+  // lineChartOptionsTrendDecessi = {
+  //   responsive: true,
+  // };
 
-  lineChartColorsTrendDecessi: Color[] = [
-    {
-      borderColor: [
-        '#ff0000',
-        '#00ff00'
-      ],
-      backgroundColor: [
-        '#00ff00'
-      ],
-    },
-  ];
-  lineChartLegendTrendDecessi = true;
-  lineChartPluginsTrendDecessi = [];
-  lineChartTypeTrendDecessi = 'line';
+  // lineChartColorsTrendDecessi: Color[] = [
+  //   {
+  //     borderColor: [
+  //       '#ff0000',
+  //       '#00ff00'
+  //     ],
+  //     backgroundColor: [
+  //       '#00ff00'
+  //     ],
+  //   },
+  // ];
+  // lineChartLegendTrendDecessi = true;
+  // lineChartPluginsTrendDecessi = [];
+  // lineChartTypeTrendDecessi = 'line';
   // 4) grafico trend deceduti/dimessi - FINE
 
   ngOnInit(): void {
     this.initDatiAndamentoNazionaleLatest();
     this.initDatiAndamentoNazionale();
     this.initDatiDeceduti();
-    this.initDatiDimessi();
+    // this.initDatiDimessi();
 
   }
 
