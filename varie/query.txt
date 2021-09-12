@@ -1,44 +1,35 @@
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 1, '253961', '5,6', '16', '<0,01', '<0,01', '14');
+	VALUES (NULL, 1, '257757', '5,6', '14', '<0,01', '<0,01', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 2, '469478', '10,3', '17', '<0,01', '<0,01', '14');
+	VALUES (NULL, 2, '475168', '10,4', '17', '<0,01', '<0,01', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 3, '566252', '12,5', '73', '0,1', '<0,01', '14');
+	VALUES (NULL, 3, '571896', '12,5', '73', '0,1', '<0,01', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 4, '571299', '12,6', '269', '0,2', '<0,01', '14');
+	VALUES (NULL, 4, '577368', '12,6', '246', '0,2', '<0,01', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 5, '721543', '15,9', '1162', '0,9', '0,2', '14');
+	VALUES (NULL, 5, '727784', '15,9', '1173', '0,9', '0,2', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 6, '771653', '17,0', '4636', '3,6', '0,6', '14');
+	VALUES (NULL, 6, '776792', '17,0', '4662', '3,6', '0,6', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 7, '486653', '10,7', '13333', '10,4', '2,7', '14');
+	VALUES (NULL, 7, '489546', '10,7', '13383', '10,4', '2,7', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 8, '351313', '7,7', '32469', '25,2', '9,2', '14');
+	VALUES (NULL, 8, '353259', '7,7', '32566', '25,2', '9,2', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 9, '260893', '5,7', '51837', '40,3', '19,9', '14');
+	VALUES (NULL, 9, '262155', '5,7', '51958', '40,3', '19,8', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 10, '89504', '2,0', '24893', '19,3', '27,8', '14');
+	VALUES (NULL, 10, '89880', '2,0', '24941', '19,3', '27,7', '15');
 
 INSERT INTO `dati_rapporto` (`id_dati_rapporto`, `fk_classi_eta`, `num_casi`, `perc_casi`, `num_deceduti`, `perc_deceduti`, `letalita`, `fk_id_rapporto`)
-	VALUES (NULL, 11, '104', '0,0', '3', '0,0', '2,9', '14');
-
-
-
-Età non nota	104	0	3	0	2.9
-
-
-
-
-
+	VALUES (NULL, 11, '108', '<0,01', '7', '<0,01', '6,5', '15');
 
 
 SELECT
