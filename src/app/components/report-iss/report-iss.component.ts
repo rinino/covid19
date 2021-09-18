@@ -21,6 +21,7 @@ export class ReportIssComponent implements OnInit {
   public dataAggiornamento: string;
   public dataPubblicazione: string;
   public pathFile: string;
+  public pathOpenData: string;
   public idRapporto: string;
   public pathFileAnalisiDecessi: string;
 
@@ -29,7 +30,7 @@ export class ReportIssComponent implements OnInit {
   ngOnInit(): void {
     this.initReport();
     this.setPathAnalisiDecessi();
-   
+    this.setPathOpenData();
   }
 
   getUrlToPdf(): string {
@@ -38,6 +39,11 @@ export class ReportIssComponent implements OnInit {
 
   setPathAnalisiDecessi(): void {
     this.pathFileAnalisiDecessi = 'https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_21_luglio_2021.pdf';
+  }
+
+
+  setPathOpenData(): void {
+    this.pathOpenData = 'https://www.epicentro.iss.it/coronavirus/open-data/covid_19-iss.xlsx';
   }
 
   initReport(): void {

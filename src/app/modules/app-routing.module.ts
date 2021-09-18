@@ -34,7 +34,7 @@ const routes: Routes = [
   {
     path: 'info',
     component: InfoComponent,
-    data: { title: 'Covid-19 - Info' }
+    data: { title: 'Covid-19 - Info e links' }
   },
   {
     path: 'regioni',
@@ -46,15 +46,8 @@ const routes: Routes = [
     component: AdminComponent,
     data: { title: 'Covid-19 - Amministrazione' }
   },
-  // {
-  //   path: 'mappa',
-  //   component: MappaComponent,
-  //   data: { title: 'Covid-19 - Regioni' }
-  // },
   { path: '**', component: PaginaNonTrovataComponent }
-
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
