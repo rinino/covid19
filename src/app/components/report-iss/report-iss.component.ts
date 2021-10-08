@@ -49,11 +49,11 @@ export class ReportIssComponent implements OnInit {
   initReport(): void {
     this.recuperoJsonService.getRapportAttivo().subscribe(
       data => {
-        this.dataAggiornamento = this.utilsService.transformDate(data.dtAggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        this.dataPubblicazione = this.utilsService.transformDate(data.dtPubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
-        this.pathFile = data.pathFile;
-        this.idRapporto = data.idRapporto;
-        this.getDatiReport(data.idRapporto);
+        this.dataAggiornamento = this.utilsService.transformDate(data.dt_aggiornamento, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.dataPubblicazione = this.utilsService.transformDate(data.dt_pubblicazione, AppConfig.DATA_ITA_NO_ORE_FORMAT);
+        this.pathFile = data.path_file;
+        this.idRapporto = data.id_rapporto;
+        this.getDatiReport(data.id_rapporto);
       }
 
     );
@@ -66,19 +66,19 @@ export class ReportIssComponent implements OnInit {
       data => {
 
         data.forEach((rapporto: {
-          letalita: string; classeEta: any;
-          numCasi: string; numDeceduti: string;
-          percCasi: string,
-          percDeceduti: string;
+          letalita: string; classe_eta: any;
+          num_casi: string; num_deceduti: string;
+          perc_casi: string,
+          perc_deceduti: string;
           fasciaCalcolo: string
         }) => {
           rapportoIssDTO = new DatiRapportoIssDto();
           rapportoIssDTO.letalita = rapporto.letalita;
-          rapportoIssDTO.num_casi = rapporto.numCasi;
-          rapportoIssDTO.num_deceduti = rapporto.numDeceduti;
-          rapportoIssDTO.perc_casi = rapporto.percCasi;
-          rapportoIssDTO.perc_deceduti = rapporto.percDeceduti;
-          rapportoIssDTO.classeEta = rapporto.classeEta.valore;
+          rapportoIssDTO.num_casi = rapporto.num_casi;
+          rapportoIssDTO.num_deceduti = rapporto.num_deceduti;
+          rapportoIssDTO.perc_casi = rapporto.perc_casi;
+          rapportoIssDTO.perc_deceduti = rapporto.perc_deceduti;
+          rapportoIssDTO.classeEta = rapporto.classe_eta;
           rapportoIssDTO.fascia_calcolo = rapporto.fasciaCalcolo;
           this.rapporti.push(rapportoIssDTO);
         });
