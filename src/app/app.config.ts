@@ -11,11 +11,9 @@ export class AppConfig {
   public static get ANDAMENTO_NAZIONALE(): string { return 'dpc-covid19-ita-andamento-nazionale.json'; }
   public static get ANDAMENTO_NAZIONALE_LATEST(): string { return 'dpc-covid19-ita-andamento-nazionale-latest.json'; }
   public static get DATI_REGIONI(): string { return 'dpc-covid19-ita-regioni.json'; }
-  public static get DATI_REGIONI_LATEST(): string {return 'dpc-covid19-ita-regioni-latest.json'}
+  public static get DATI_REGIONI_LATEST(): string { return 'dpc-covid19-ita-regioni-latest.json' }
   public static get DATI_PROVINCE(): string { return 'dpc-covid19-ita-province.json'; }
-  //public static get API_START_PATH(): string  {return 'http://localhost:8080/api/';}
-  //public static get API_START_PATH(): string  {return 'https://andamentocovid19api.herokuapp.com/api/';}
-  public static get API_START_PATH(): string  {return 'http://localhost:3000';}
+  // public static get API_START_PATH(): string { return 'http://localhost:3000'; }
 
   public static get ANDAMENTO_DECEDUTI_COMPLETO(): string {
     return this.GITLAB_START_PATH + 'VitoFanelli/covid-19-italy/master/notebookIT/decessiITA.json';
@@ -24,7 +22,7 @@ export class AppConfig {
     return this.GITLAB_START_PATH + 'VitoFanelli/covid-19-italy/master/notebookIT/dimessiITA.json';
   }
 
-  public static get DATA_ITA_GG_MM_FORMAT(): string {return 'dd/MM'; }
-  public static get DATA_ITA_NO_ORE_FORMAT(): string {return 'dd/MM/yyyy'; }
-  public static get DATA_ITA_HH_MM_FORMAT(): string {return 'dd/MM/yyyy hh:MM'; }
+  public static get DATA_ITA_GG_MM_FORMAT(): string { return 'dd/MM'; }
+  public static get DATA_ITA_NO_ORE_FORMAT(): string { return 'dd/MM/yyyy'; }
+  public static get DATA_ITA_HH_MM_FORMAT(): string { return 'dd/MM/yyyy hh:MM'; }
 }

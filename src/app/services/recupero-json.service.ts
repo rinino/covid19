@@ -27,9 +27,7 @@ export class RecuperoJsonService {
     this.baseUrlAndamentoDimessi = AppConfig.ANDAMENTO_DIMESI_COMPLETO;
     this.baseUrlRegioniLatest = AppConfig.DATI_REGIONI_LATEST;
     this.jsonReportUrl = 'assets/json/dati_rapporto.json';
-    this.jsonRapportoAttivo = AppConfig.API_START_PATH + '/rapporti/getReportAttivo';
-    this.jsonDatiRapporto = AppConfig.API_START_PATH + '/rapporti/getDatiRapporto';
-    this.jsonUtenteByUserAndPass = AppConfig.API_START_PATH + 'user/findUser';
+    this.jsonRapportoAttivo = 'assets/json/report_attivo.json';
 
   }
 
@@ -68,16 +66,13 @@ export class RecuperoJsonService {
     return this.httpClient.get<any>(this.baseUrlRegioniLatest);
   }
 
-
   getRapportAttivo(): Observable<any> {
-    //return this.httpClient.get<any>(this.jsonRapportoAttivo);
-    return this.httpClient.get<any>("assets/json/report_attivo.json");
+    return this.httpClient.get<any>(this.jsonRapportoAttivo);
 
   }
 
   getDatiRapporto(_idRapporto: string | number): Observable<any> {
-    // return this.httpClient.get<any>(this.jsonDatiRapporto + "/" + _idRapporto);
-    return this.httpClient.get<any>("assets/json/dati_rapporto.json");
+    return this.httpClient.get<any>(this.jsonReportUrl);
 
   }
 
@@ -104,9 +99,6 @@ export class RecuperoJsonService {
     // );
 
     return;
-
-
-
 
   }
 
