@@ -15,8 +15,7 @@ export class RecuperoJsonService {
   private baseUrlRegioniLatest: string;
   private jsonReportUrl: string;
   private jsonRapportoAttivo: string;
-  private jsonDatiRapporto: string;
-  private jsonUtenteByUserAndPass: string;
+  private jsonPercentuali: string;
 
   constructor(private httpClient: HttpClient) {
     this.baseUrlAndamentoNazionale = AppConfig.GITLAB_ENDPOINT + AppConfig.ANDAMENTO_NAZIONALE;
@@ -26,8 +25,10 @@ export class RecuperoJsonService {
     this.baseUrlAndamentoDeceduti = AppConfig.ANDAMENTO_DECEDUTI_COMPLETO;
     this.baseUrlAndamentoDimessi = AppConfig.ANDAMENTO_DIMESI_COMPLETO;
     this.baseUrlRegioniLatest = AppConfig.DATI_REGIONI_LATEST;
+    // json
     this.jsonReportUrl = 'assets/json/dati_rapporto.json';
     this.jsonRapportoAttivo = 'assets/json/report_attivo.json';
+    this.jsonPercentuali = 'assets/json/dati_percentuali.json';
 
   }
 
@@ -39,10 +40,9 @@ export class RecuperoJsonService {
     return this.httpClient.get<any>(this.baseUrlAndamentoNazionleLatest);
   }
 
-  getDataAggiornamento(): string {
+  getDataAggiornamento(): void {
     const andamentoNazionaleLatest = this.getDatiAndamentoNazionaleLatest();
     console.log(andamentoNazionaleLatest);
-    return 'ciao';
   }
 
   getDatiRegioni(): Observable<any> {
@@ -76,9 +76,12 @@ export class RecuperoJsonService {
 
   }
 
+  getDatiPercentuali(): Observable<any> {
+    return this.httpClient.get<any>(this.jsonPercentuali);
+
+  }
 
   // utente
-
   public getDatiUtente(username: string, password: string): Observable<any> {
 
     // let postData = new FormData();

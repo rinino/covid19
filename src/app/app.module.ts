@@ -40,6 +40,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
+import { AccordionDecessi19Component } from './components/accordion-decessi19/accordion-decessi19.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
     TredigitsPipe,
     MappaComponent,
     AdminComponent,
+    AccordionDecessi19Component,
     
 
   ],

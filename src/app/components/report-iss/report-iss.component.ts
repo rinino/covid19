@@ -5,6 +5,7 @@ import { RecuperoJsonService } from '../../services/recupero-json.service';
 import { DatiRapportoIssDto } from '../../models/dati-rapporto-iss-dto';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppConfig } from 'src/app/app.config';
+import { DatiPercentualiDTO } from 'src/app/models/dati-percentuali-dto';
 
 @Component({
   selector: 'app-report-iss',
@@ -26,11 +27,13 @@ export class ReportIssComponent implements OnInit {
   public pathFileAnalisiDecessi: string;
 
   public rapporti: DatiRapportoIssDto[] = [];
+  public percentuali: DatiPercentualiDTO[] = [];
 
   ngOnInit(): void {
     this.initReport();
     this.setPathAnalisiDecessi();
     this.setPathOpenData();
+    this.getDatiPercentuali();
   }
 
   getUrlToPdf(): string {
@@ -40,7 +43,6 @@ export class ReportIssComponent implements OnInit {
   setPathAnalisiDecessi(): void {
     this.pathFileAnalisiDecessi = 'https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_21_luglio_2021.pdf';
   }
-
 
   setPathOpenData(): void {
     this.pathOpenData = 'https://www.epicentro.iss.it/coronavirus/open-data/covid_19-iss.xlsx';
@@ -55,7 +57,6 @@ export class ReportIssComponent implements OnInit {
         this.idRapporto = data.id_rapporto;
         this.getDatiReport(data.id_rapporto);
       }
-
     );
   }
 
@@ -64,7 +65,6 @@ export class ReportIssComponent implements OnInit {
     var idRapportoInt: number = +idRapporto;
     this.recuperoJsonService.getDatiRapporto(idRapportoInt).subscribe(
       data => {
-
         data.forEach((rapporto: {
           letalita: string; classe_eta: any;
           num_casi: string; num_deceduti: string;
@@ -83,6 +83,35 @@ export class ReportIssComponent implements OnInit {
           this.rapporti.push(rapportoIssDTO);
         });
         this.rapporti.sort((a, b) => a.classeEta < b.classeEta ? -1 : a.classeEta > b.classeEta ? 1 : 0);
+      }
+    );
+  }
+
+
+  getDatiPercentuali(): void {
+    var datiPercentualiDTO: DatiPercentualiDTO;
+    this.recuperoJsonService.getDatiPercentuali().subscribe(
+      data => {
+        data.forEach((percentuale: {
+          oridine: number;
+          fascia: string;
+          tot_casi: string;
+          tot_deceduti: string;
+        }) => {
+          datiPercentualiDTO = new DatiPercentualiDTO();
+          datiPercentualiDTO.ordine = percentuale.oridine;
+          datiPercentualiDTO.fascia = percentuale.fascia;
+          datiPercentualiDTO.tot_casi = percentuale.tot_casi;
+          datiPercentualiDTO.tot_deceduti = percentuale.tot_deceduti;
+
+          var totCasi = datiPercentualiDTO.tot_casi;
+          var totDeceduti = datiPercentualiDTO.tot_deceduti;
+          var percento = this.utilsService.calcolaPercentuale(totCasi, totDeceduti) 
+          datiPercentualiDTO.percentuale = percento + "%";
+
+          this.percentuali.push(datiPercentualiDTO);
+        });
+        this.percentuali.sort((a, b) => a.ordine < b.ordine ? -1 : a.ordine > b.ordine ? 1 : 0);
       }
     );
   }

@@ -43,29 +43,13 @@
   </div>
 
   <div class="container_grafici">
-    <div class="percentuale">
-      <h5>Fascia 0-49</h5>
-      <p>Tot. casi: <span id="positiviTamponi" class="bold">2.688.894</span></p>
-      <p>Tot deceduti: <span id="decedutiSuCasi" class="bold">1596</span></p>
-      <p>Percentuale: <span id="guaritiSuCasi" class="bold">0,06%</span></p>
+    <div class="percentuale" *ngFor="let perc of percentuali">
+      <h5>{{perc.fascia}}</h5>
+      <p>Tot. casi: <span id="positiviTamponi" class="bold">{{perc.tot_casi | Tredigits}}</span></p>
+      <p>Tot deceduti: <span id="decedutiSuCasi" class="bold">{{perc.tot_deceduti | Tredigits}}</span></p>
+      <p>Percentuale: <span id="guaritiSuCasi" class="bold">{{perc.percentuale}}</span></p>
     </div>
-
-    <div class="totali">
-      <h5>Fascia 50-90+</h5>
-      <p>Tot. casi: <span id="positiviTamponi" class="bold">2.000.283</span></p>
-      <p>Tot deceduti: <span id="decedutiSuCasi" class="bold">128.663</span></p>
-      <p>Percentuale: <span id="guaritiSuCasi" class="bold">6,43%</span></p>
-    </div>
-
-    <div class="percentuale">
-      <h5>Riepilogo</h5>
-      <p>Tot. casi: <span id="positiviTamponi" class="bold">4.689.177</span></p>
-      <p>Tot deceduti: <span id="decedutiSuCasi" class="bold">130.259</span></p>
-      <p>% deceduti su positivi: <span id="guaritiSuCasi" class="bold">2,78%</span></p>
-    </div>
-
     <br>
-
 
     <div class="noteAlt">
       <h3>Report analisi decessi</h3>
@@ -77,7 +61,7 @@
       <h4>Di seguito un estratto del report sui decessi:</h4>
       <blockquote>
         <p id="cit">
-           Decessi di età inferiore ai 50 anni
+          Decessi di età inferiore ai 50 anni
         </p>
         <br>
 
@@ -114,83 +98,7 @@
         </ejs-accordion>
       </blockquote>
 
-      <ejs-accordion>
-        <e-accordionitems>
-          
-          <e-accordionitem expanded='true'>
-            <ng-template #header>
-              <div>01 Ottobre 2021</div>
-            </ng-template>
-            <ng-template #content>
-              <p>
-                <img src="assets/images/decessi_0_19_01Ottobre2021.JPG">
-              </p>
-            </ng-template>
-          </e-accordionitem>
-
-          <e-accordionitem>
-            <ng-template #header>
-              <div>17 Settembre 2021</div>
-            </ng-template>
-            <ng-template #content>
-              <p>
-                <img src="assets/images/decessi_0_19_17Settembre2021.JPG">
-              </p>
-            </ng-template>
-          </e-accordionitem>
-
-          <e-accordionitem>
-            <ng-template #header>
-              <div>10 Settembre 2021</div>
-            </ng-template>
-            <ng-template #content>
-              <p>
-                <img src="assets/images/decessi_0_19_10Settembre2021.JPG">
-              </p>
-            </ng-template>
-          </e-accordionitem>
-          <e-accordionitem>
-            <ng-template #header>
-              <div>01 Settembre 2021</div>
-            </ng-template>
-            <ng-template #content>
-              <p>
-                <img src="assets/images/decessi_0_19_01Settembre2021.JPG">
-              </p>
-            </ng-template>
-          </e-accordionitem>
-          <e-accordionitem>
-            <ng-template #header>
-              <div>13 Agosto 2021</div>
-            </ng-template>
-            <ng-template #content>
-              <p>
-                <img src="assets/images/decessi_0_19_13Agosto2021.JPG">
-              </p>
-            </ng-template>
-          </e-accordionitem>
-          <e-accordionitem>
-            <ng-template #header>
-              <div>09 Giugno 2021</div>
-            </ng-template>
-            <ng-template #content>
-              <p>
-                <img src="assets/images/decessi_0_19_09Giugno2021.JPG">
-              </p>
-            </ng-template>
-          </e-accordionitem>
-          <e-accordionitem>
-            <ng-template #header>
-              <div>28 Aprile 2021</div>
-            </ng-template>
-            <ng-template #content>
-              <p>
-                <img src="assets/images/decessi_0_19_28Aprile2021.JPG">
-              </p>
-            </ng-template>
-          </e-accordionitem>
-        </e-accordionitems>
-      </ejs-accordion>
+      <app-accordion-decessi19></app-accordion-decessi19>
     </div>
 
     <div class="percentuale">
