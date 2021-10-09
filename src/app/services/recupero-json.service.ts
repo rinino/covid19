@@ -32,7 +32,7 @@ export class RecuperoJsonService {
     this.jsonRapportoAttivo = 'assets/json/report_attivo.json';
     this.jsonPercentuali = 'assets/json/dati_percentuali.json';
     this.jsonPathVari = 'assets/json/path_vari.json';
-    this.jsonAccordionDecessi = 'assets/json/accordion_decessi_19';
+    this.jsonAccordionDecessi = 'assets/json/accordion_decessi_19.json';
 
   }
 

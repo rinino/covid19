@@ -19,6 +19,7 @@ export class AccordionDecessi19Component implements OnInit {
 
   ngOnInit(): void {
     this.getDatiAccordionDecessi()
+    console.log(this.datiAccordion)
   }
 
 
@@ -36,6 +37,11 @@ export class AccordionDecessi19Component implements OnInit {
             datiAccordion.ordine = record.ordine;
             datiAccordion.header = record.header;
             datiAccordion.path_image = record.path_image;
+            if(record.ordine == 1) {
+              datiAccordion.aperto = true;
+            } else {
+              datiAccordion.aperto = false;
+            }
             this.datiAccordion.push(datiAccordion);
           });
           this.datiAccordion.sort((a, b) => a.ordine < b.ordine ? -1 : a.ordine > b.ordine ? 1 : 0);

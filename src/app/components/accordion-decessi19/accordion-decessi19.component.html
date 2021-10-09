@@ -1,75 +1,15 @@
+
+<h4>Tabelle distribuzione casi e decessi nella popolazione 0-19 anni</h4>
+
 <ejs-accordion>
     <e-accordionitems>
-
-      <e-accordionitem expanded='true'>
+      <e-accordionitem *ngFor="let record of datiAccordion">
         <ng-template #header>
-          <div>01 Ottobre 2021</div>
+          <div>{{record.header}}</div>
         </ng-template>
         <ng-template #content>
           <p>
-            <img src="assets/images/decessi_0_19_01Ottobre2021.JPG">
-          </p>
-        </ng-template>
-      </e-accordionitem>
-
-      <e-accordionitem>
-        <ng-template #header>
-          <div>17 Settembre 2021</div>
-        </ng-template>
-        <ng-template #content>
-          <p>
-            <img src="assets/images/decessi_0_19_17Settembre2021.JPG">
-          </p>
-        </ng-template>
-      </e-accordionitem>
-
-      <e-accordionitem>
-        <ng-template #header>
-          <div>10 Settembre 2021</div>
-        </ng-template>
-        <ng-template #content>
-          <p>
-            <img src="assets/images/decessi_0_19_10Settembre2021.JPG">
-          </p>
-        </ng-template>
-      </e-accordionitem>
-      <e-accordionitem>
-        <ng-template #header>
-          <div>01 Settembre 2021</div>
-        </ng-template>
-        <ng-template #content>
-          <p>
-            <img src="assets/images/decessi_0_19_01Settembre2021.JPG">
-          </p>
-        </ng-template>
-      </e-accordionitem>
-      <e-accordionitem>
-        <ng-template #header>
-          <div>13 Agosto 2021</div>
-        </ng-template>
-        <ng-template #content>
-          <p>
-            <img src="assets/images/decessi_0_19_13Agosto2021.JPG">
-          </p>
-        </ng-template>
-      </e-accordionitem>
-      <e-accordionitem>
-        <ng-template #header>
-          <div>09 Giugno 2021</div>
-        </ng-template>
-        <ng-template #content>
-          <p>
-            <img src="assets/images/decessi_0_19_09Giugno2021.JPG">
-          </p>
-        </ng-template>
-      </e-accordionitem>
-      <e-accordionitem>
-        <ng-template #header>
-          <div>28 Aprile 2021</div>
-        </ng-template>
-        <ng-template #content>
-          <p>
-            <img src="assets/images/decessi_0_19_28Aprile2021.JPG">
+            <img src="{{record.path_image}}" alt="{{record.header}}" title="{{record.header}}">
           </p>
         </ng-template>
       </e-accordionitem>
