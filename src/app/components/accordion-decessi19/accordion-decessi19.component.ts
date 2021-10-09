@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AccordionDecessiDTO } from 'src/app/models/accordion-decessi-dto';
+
+import { RecuperoJsonService } from '../../services/recupero-json.service';
 
 @Component({
   selector: 'app-accordion-decessi19',
@@ -7,9 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccordionDecessi19Component implements OnInit {
 
-  constructor() { }
+  constructor(
+    private recuperoJsonService: RecuperoJsonService
+  ) { }
+
+
+  public datiAccordion: AccordionDecessiDTO[] = []
 
   ngOnInit(): void {
+    this.getDatiAccordionDecessi()
   }
+
+
+
+  getDatiAccordionDecessi(): void {
+    var datiAccordion: AccordionDecessiDTO; (
+      this.recuperoJsonService.getDatiAccordionDecessi()).subscribe(
+        data => {
+          data.forEach((record: {
+            ordine: number;
+            header: string;
+            path_image: string
+          }) => {
+            datiAccordion = new AccordionDecessiDTO();
+            datiAccordion.ordine = record.ordine;
+            datiAccordion.header = record.header;
+            datiAccordion.path_image = record.path_image;
+            this.datiAccordion.push(datiAccordion);
+          });
+          this.datiAccordion.sort((a, b) => a.ordine < b.ordine ? -1 : a.ordine > b.ordine ? 1 : 0);
+        }
+      );
+
+  }
+
+
 
 }

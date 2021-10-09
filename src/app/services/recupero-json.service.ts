@@ -16,6 +16,8 @@ export class RecuperoJsonService {
   private jsonReportUrl: string;
   private jsonRapportoAttivo: string;
   private jsonPercentuali: string;
+  private jsonPathVari: string;
+  private jsonAccordionDecessi: string;
 
   constructor(private httpClient: HttpClient) {
     this.baseUrlAndamentoNazionale = AppConfig.GITLAB_ENDPOINT + AppConfig.ANDAMENTO_NAZIONALE;
@@ -29,6 +31,8 @@ export class RecuperoJsonService {
     this.jsonReportUrl = 'assets/json/dati_rapporto.json';
     this.jsonRapportoAttivo = 'assets/json/report_attivo.json';
     this.jsonPercentuali = 'assets/json/dati_percentuali.json';
+    this.jsonPathVari = 'assets/json/path_vari.json';
+    this.jsonAccordionDecessi = 'assets/json/accordion_decessi_19';
 
   }
 
@@ -78,6 +82,16 @@ export class RecuperoJsonService {
 
   getDatiPercentuali(): Observable<any> {
     return this.httpClient.get<any>(this.jsonPercentuali);
+
+  }
+
+  getPathVari(): Observable<any> {
+    return this.httpClient.get<any>(this.jsonPathVari);
+
+  }
+
+  getDatiAccordionDecessi(): Observable<any> {
+    return this.httpClient.get<any>(this.jsonAccordionDecessi);
 
   }
 

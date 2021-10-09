@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { RecuperoJsonService } from '../../services/recupero-json.service';
 
@@ -22,6 +22,7 @@ export class ReportIssComponent implements OnInit {
   public dataAggiornamento: string;
   public dataPubblicazione: string;
   public pathFile: string;
+  public pathBarre: string;
   public pathOpenData: string;
   public idRapporto: string;
   public pathFileAnalisiDecessi: string;
@@ -31,22 +32,23 @@ export class ReportIssComponent implements OnInit {
 
   ngOnInit(): void {
     this.initReport();
-    this.setPathAnalisiDecessi();
-    this.setPathOpenData();
+    // this.setPathAnalisiDecessi();
+    // this.setPathOpenData();
     this.getDatiPercentuali();
+    this.getPathVari();
   }
 
   getUrlToPdf(): string {
     return this.pathFile;
   }
 
-  setPathAnalisiDecessi(): void {
-    this.pathFileAnalisiDecessi = 'https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_21_luglio_2021.pdf';
-  }
+  // setPathAnalisiDecessi(): void {
+  //   this.pathFileAnalisiDecessi = 'https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_21_luglio_2021.pdf';
+  // }
 
-  setPathOpenData(): void {
-    this.pathOpenData = 'https://www.epicentro.iss.it/coronavirus/open-data/covid_19-iss.xlsx';
-  }
+  // setPathOpenData(): void {
+  //   this.pathOpenData = 'https://www.epicentro.iss.it/coronavirus/open-data/covid_19-iss.xlsx';
+  // }
 
   initReport(): void {
     this.recuperoJsonService.getRapportAttivo().subscribe(
@@ -87,7 +89,6 @@ export class ReportIssComponent implements OnInit {
     );
   }
 
-
   getDatiPercentuali(): void {
     var datiPercentualiDTO: DatiPercentualiDTO;
     this.recuperoJsonService.getDatiPercentuali().subscribe(
@@ -106,7 +107,7 @@ export class ReportIssComponent implements OnInit {
 
           var totCasi = datiPercentualiDTO.tot_casi;
           var totDeceduti = datiPercentualiDTO.tot_deceduti;
-          var percento = this.utilsService.calcolaPercentuale(totCasi, totDeceduti) 
+          var percento = this.utilsService.calcolaPercentuale(totCasi, totDeceduti)
           datiPercentualiDTO.percentuale = percento + "%";
 
           this.percentuali.push(datiPercentualiDTO);
@@ -115,5 +116,18 @@ export class ReportIssComponent implements OnInit {
       }
     );
   }
+
+
+  getPathVari(): void {
+    this.recuperoJsonService.getPathVari().subscribe(
+      data => {
+        this.pathFileAnalisiDecessi = data.path_file_analisi_decessi;
+        this.pathOpenData = data.path_open_data;
+        this.pathBarre = data.path_barre;
+      });
+  }
+
+
+
 
 }
