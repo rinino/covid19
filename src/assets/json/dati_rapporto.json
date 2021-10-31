@@ -1,73 +1,73 @@
 [{
         "classe_eta": "0-9",
-        "num_casi": "275973",
-        "perc_casi": "5,8",
+        "num_casi": "279057",
+        "perc_casi": "5,9",
         "num_deceduti": "15",
-        "perc_deceduti": "<0,01",
-        "letalita": "<0,01"
-    }, {
-        "classe_eta": "10-19",
-        "num_casi": "494136",
-        "perc_casi": "10,5",
-        "num_deceduti": "20",
-        "perc_deceduti": "<0,01",
-        "letalita": "<0,01"
-    }, {
-        "classe_eta": "20-29",
-        "num_casi": "587742",
-        "perc_casi": "12,4",
-        "num_deceduti": "77",
         "perc_deceduti": "<0,1",
         "letalita": "<0,01"
     }, {
+        "classe_eta": "10-19",
+        "num_casi": "497449",
+        "perc_casi": "10,5",
+        "num_deceduti": "20",
+        "perc_deceduti": "<0,1",
+        "letalita": "<0,01"
+    }, {
+        "classe_eta": "20-29",
+        "num_casi": "590193",
+        "perc_casi": "12,4",
+        "num_deceduti": "79",
+        "perc_deceduti": "<0,1",
+        "letalita": "<0,1"
+    }, {
         "classe_eta": "30-39",
-        "num_casi": "598537",
+        "num_casi": "602011",
         "perc_casi": "12,7",
-        "num_deceduti": "290",
+        "num_deceduti": "291",
         "perc_deceduti": "0,2",
         "letalita": "<0,1"
     }, {
         "classe_eta": "40-49",
-        "num_casi": "751207",
+        "num_casi": "755821",
         "perc_casi": "15,9",
-        "num_deceduti": "1214",
+        "num_deceduti": "1221",
         "perc_deceduti": "0,9",
         "letalita": "0,2"
     }, {
         "classe_eta": "50-59",
-        "num_casi": "796304",
+        "num_casi": "800155",
         "perc_casi": "16,8",
-        "num_deceduti": "4764",
+        "num_deceduti": "4804",
         "perc_deceduti": "3,7",
         "letalita": "0,6"
     }, {
         "classe_eta": "60-69",
-        "num_casi": "502701",
+        "num_casi": "505343",
         "perc_casi": "10,6",
-        "num_deceduti": "13667",
+        "num_deceduti": "13712",
         "perc_deceduti": "10,4",
         "letalita": "2,7"
     }, {
         "classe_eta": "70-79",
-        "num_casi": "361965",
+        "num_casi": "363944",
         "perc_casi": "7,7",
-        "num_deceduti": "32982",
+        "num_deceduti": "33047",
         "perc_deceduti": "25,2",
         "letalita": "9,1"
     }, {
         "classe_eta": "80-89",
-        "num_casi": "268178",
+        "num_casi": "269383",
         "perc_casi": "5,7",
-        "num_deceduti": "52606",
-        "perc_deceduti": "40,2",
-        "letalita": "19,7"
+        "num_deceduti": "52713",
+        "perc_deceduti": "40,1",
+        "letalita": "19,6"
     }, {
         "classe_eta": ">= 90",
-        "num_casi": "91752",
+        "num_casi": "92179",
         "perc_casi": "1,9",
-        "num_deceduti": "25314",
+        "num_deceduti": "25387",
         "perc_deceduti": "19,3",
-        "letalita": "27,6"
+        "letalita": "27,5"
     }, {
         "classe_eta": "Non nota",
         "num_casi": "98",
