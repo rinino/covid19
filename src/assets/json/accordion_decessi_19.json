@@ -1,61 +1,71 @@
 [ 	
 	{
 		"ordine": "01",
+        "header": "24 Novembre 2021",
+        "path_image": "assets/images/decessi_0_19_24Novembre2021.JPG"
+    },
+	{
+		"ordine": "02",
+        "header": "19 Novembre 2021",
+        "path_image": "assets/images/decessi_0_19_19Novembre2021.JPG"
+    },
+	{
+		"ordine": "03",
         "header": "05 Novembre 2021",
         "path_image": "assets/images/decessi_0_19_05Novembre2021.JPG"
     },
 	{
-		"ordine": "02",
+		"ordine": "04",
         "header": "29 Ottobre 2021",
         "path_image": "assets/images/decessi_0_19_29Ottobre2021.JPG"
     },
     {
-		"ordine": "03",
+		"ordine": "05",
         "header": "22 Ottobre 2021",
         "path_image": "assets/images/decessi_0_19_22Ottobre2021.JPG"
     },
 	{
-		"ordine": "04",
+		"ordine": "06",
         "header": "13 Ottobre 2021",
         "path_image": "assets/images/decessi_0_19_13Ottobre2021.JPG"
     },
 	{
-		"ordine": "05",
+		"ordine": "07",
         "header": "08 Ottobre 2021",
         "path_image": "assets/images/decessi_0_19_08Ottobre2021.JPG"
     },
 	{
-		"ordine": "06",
+		"ordine": "08",
         "header": "01 Ottobre 2021",
         "path_image": "assets/images/decessi_0_19_01Ottobre2021.JPG"       
     }, 
     {
-		"ordine": "07",
+		"ordine": "09",
         "header": "17 Settembre 2021",
         "path_image": "assets/images/decessi_0_19_17Settembre2021.JPG"    
     }, 
     {
-		"ordine": "08",
+		"ordine": "10",
         "header": "10 Settembre 2021",
         "path_image": "assets/images/decessi_0_19_10Settembre2021.JPG"    
     },
     {
-		"ordine": "09",
+		"ordine": "11",
         "header": "01 Settembre 2021",
         "path_image": "assets/images/decessi_0_19_01Settembre2021.JPG"    
     },
     {
-		"ordine": "10",
+		"ordine": "12",
         "header": "13 Agosto 2021",
         "path_image": "assets/images/decessi_0_19_13Agosto2021.JPG"    
     },
     {
-		"ordine": "11",
+		"ordine": "13",
         "header": "09 Giugno 2021",
         "path_image": "assets/images/decessi_0_19_09Giugno2021.JPG"    
     },
     {
-		"ordine": "12",
+		"ordine": "14",
         "header": "28 Aprile 2021",
         "path_image": "assets/images/decessi_0_19_28Aprile2021.JPG"    
     }
