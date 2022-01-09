@@ -2,17 +2,17 @@
 	{
 		"ordine": "1",
         "fascia": "0-49",
-		"tot_casi": "3169967",
-        "tot_deceduti": "1694"       
+		"tot_casi": "3961197",
+        "tot_deceduti": "1722"       
     }, {
 		"ordine": "2",
         "fascia": "50-90+",
-		"tot_casi": "2261275",
-        "tot_deceduti": "133493"
+		"tot_casi": "2569061",
+        "tot_deceduti": "135563"
     }, {
 		"ordine": "3",
         "fascia": "Riepilogo",
-		"tot_casi": "5431343",
-        "tot_deceduti": "135187"
+		"tot_casi": "6530390",
+        "tot_deceduti": "137285"
     }
 ]
